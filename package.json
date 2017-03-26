@@ -1,0 +1,13 @@
+{
+  "name": "df",
+  "version": "1.0.0",
+  "description": "try connecting go",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "yin",
+  "license": "ISC"
+}
