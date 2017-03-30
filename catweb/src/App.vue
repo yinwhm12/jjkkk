@@ -1,13 +1,22 @@
 <template>
   <div>
     <!--<img src="./assets/logo.png">-->
+    <head-view></head-view>
+    <board-view></board-view>
     <router-view></router-view>
+
   </div>
 </template>
 
 <script>
+  import HeadView from './components/publish/head.vue'
+  import BoardView from './components/publish/board.vue'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    HeadView,
+    BoardView,
+  }
 }
 </script>
 
