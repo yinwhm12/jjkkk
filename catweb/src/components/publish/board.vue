@@ -37,7 +37,7 @@
   .body-height {
     max-height: 2000px;
     min-height: 500px;
-    height: 1800px;
+    height: 1300px;
   }
 
   .hh {

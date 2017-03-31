@@ -1,60 +1,61 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <div>
-      <input type="text" v-model="user.name" placeholder="your name"><br>
-      <input type="password" v-model="user.pwd" placeholder="your password">
-      <br><button @click="post">注册</button>
-    </div>
+  <div>
+    <el-row>
+      <el-col :span="24">
+        <div class="grid-content bg-purple-dark"></div>
+      </el-col>
+    </el-row>
+    <div class="line"></div>
+
+    <el-row>
+      <el-col :span="24">
+        <div class="medium-content"></div>
+      </el-col>
+    </el-row>
+
   </div>
+
 </template>
 
-<script>
-export default {
-  name: 'hello',
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App',
-      user: {
-          name: '',
-          pwd: ''
-      }
-    }
-  },
-  methods: {
-      post () {
-          let data = this.user
-          this.$http.post('/user/',data)
-            .then((res) => {
-              this.$message({
-                  message: '注册成功',
-                  type: 'success'
-              }),
-                this.$router.push({path: '/home/welcome'})
-            })
-      }
+
+<style>
+  .el-row {
+    margin-bottom: 20px;
+
+  &
+  :last-child {
+    margin-bottom: 0;
   }
-}
-</script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h1, h2 {
-  font-weight: normal;
-}
+  }
+  .el-col {
+    border-radius: 4px;
+  }
 
-ul {
-  list-style-type: none;
-  padding: 0;
-}
+  .bg-purple-dark {
+    background: #324157;
+  }
 
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
+  .bg-purple {
+    background: #d3dce6;
+  }
 
-a {
-  color: #42b983;
-}
+  .bg-purple-light {
+    background: #e5e9f2;
+  }
+
+  .grid-content {
+    border-radius: 4px;
+    min-height: 120px;
+  }
+
+  .row-bg {
+    padding: 10px 0;
+    background-color: #f9fafc;
+  }
+
+  .medium-content {
+    min-height: 200px;
+    background: #F9FAFC;
+  }
 </style>
