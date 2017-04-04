@@ -5,7 +5,7 @@
         <div class="grid-content-left bg-purple-dark">catW</div>
       </el-col>
       <el-col :lg="10" :xs="20" :sm="18" :md="14">
-        <el-menu theme="dark" :default-active="activeIndex" class="grid-content el-menu" mode="horizontal"
+        <el-menu theme="dark" class="grid-content el-menu" mode="horizontal"
                  @select="handleSelect">
           <el-menu-item index="1">处理中心</el-menu-item>
           <el-submenu index="2">
@@ -20,7 +20,7 @@
         </el-menu>
       </el-col>
       <el-col :lg="3" :sm="2" :md="2" :xs="1">
-        <div class="grid-content bg-purple-dark grid-search">
+        <div class="grid-content bg-purple-dark">
           <el-input
             placeholder="搜索"
             icon="search"
@@ -30,54 +30,74 @@
         </div>
       </el-col>
       <!--登录弹出框-->
+      <!--<template scope="scope">-->
       <el-col :lg="4" :sm="1" :md="3" :xs="1">
         <div class="grid-content-right bg-purple-dark">
-          <el-button type="text" @click="dialogFormVisible = true">Dialog</el-button>
-          <el-dialog title="收货地址" v-model="dialogFormVisible" size="tiny" customClass="dialog">
-            <el-form :model="form">
-              <el-row type="flex" justify="center">
-                <el-col>
-                  <el-form-item label="活动名称" :label-width="formLabelWidth">
-                    <el-input v-model="form.name" placeholder="your name"></el-input>
-                  </el-form-item>
-                </el-col>
-              </el-row>
-            </el-form>
-            <el-row type="flex" justify="center">
-              <el-col>
-                <el-button @click="dialogFormVisible = false">取 消</el-button>
-                <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
-              </el-col>
-            </el-row>
-          </el-dialog>
+          <div class="right-head">
+            <!--<span v-if=""></span>-->
+
+            <span v-if="user===null">
+                <el-dropdown>
+                  <span class="el-dropdown-link dropdown">
+                    {{user.email}}
+                  </span>
+                  <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>个人资料设置</el-dropdown-item>
+                    <el-dropdown-item divided>我的收藏</el-dropdown-item>
+                    <el-dropdown-item divided>退出</el-dropdown-item>
+                  </el-dropdown-menu>
+                </el-dropdown>
+              </span>
+            <span v-else>
+          <el-button type="text" @click="login" size="large">登录</el-button>
+        <el-button type="text" @click="register" size="large">注册</el-button>
+                </span>
+          </div>
         </div>
       </el-col>
+      <!--</template>-->
     </el-row>
+    <el-dialog :title="dialogType?'注册':'登录'" size="tiny" v-model="isShowDialog">
+      <span v-if="dialogType===0">
+        <dialog_login></dialog_login>
+      </span>
+      <span v-else>
+      <dialog_register></dialog_register>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
+  import Dialog_login from "./login.vue"
+  import Dialog_register from "./register.vue"
   export default {
+    components: {
+      Dialog_login,
+      Dialog_register
+    },
     data() {
       return {
-        activeIndex: '1',
-        activeIndex2: '1',
+
+        isShowDialog: false,//是否弹出界面
+        dialogType: 0,//弹出界面类型  0为登录 1为注册
         input2: '',
         dialogTableVisible: false,
-        dialogFormVisible: false,
-        form: {
+        user: {
           name: '',
-          region: '',
-          date1: '',
-          date2: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          desc: ''
+          email: 'yinwhm12',
         },
         formLabelWidth: '120px'
       };
     },
     methods: {
+      login(){
+        this.isShowDialog = true;
+        this.dialogType = 0;
+      },
+      register(){
+        this.isShowDialog = true;
+        this.dialogType = 1;
+      },
       handleSelect(key, keyPath) {
         console.log(key, keyPath);
       },
@@ -91,6 +111,9 @@
   }
 </script>
 <style>
+  body {
+    margin: 0 0;
+  }
   .el-row {
     margin-bottom: 20px;
 
@@ -159,5 +182,26 @@
   .dialog {
     text-align: center;
   }
+
+  .top-body {
+    margin-top: -8px;
+  }
+
+  .right-head {
+    text-align: center;
+    height: 100%;
+    margin-right: 32px;
+    padding-top: 20px;
+    vertical-align: middle;
+  }
+
+  .dropdown {
+    display: inline-block;
+    padding: 0 0px 0 10px;
+    color: #20A0FF;
+    font-size: 20px;
+  }
+
+  /*------------*/
 
 </style>

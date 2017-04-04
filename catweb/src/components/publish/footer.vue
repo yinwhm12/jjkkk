@@ -1,10 +1,10 @@
 <template>
   <div>
-    <e-row>
-      <e-col :span="24">
+    <el-row>
+      <el-col :span="24">
         <div class="grid-content bg-purple-dark footer-line"></div>
-      </e-col>
-    </e-row>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
