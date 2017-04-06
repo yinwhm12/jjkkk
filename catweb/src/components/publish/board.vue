@@ -58,15 +58,6 @@
   }
 
 </style>
-<script>
-  import WelcomeView from '../Welcome.vue'
-
-  export default{
-    components: {
-      WelcomeView
-    }
-  }
-</script>
 
 
 

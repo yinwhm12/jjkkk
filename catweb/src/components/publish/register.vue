@@ -11,10 +11,13 @@
         <el-input type="password" v-model="user.checkPass" auto-complete="off"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm('user')">立即创建</el-button>
-        <el-button @click="resetForm('user')">重置</el-button>
+        <el-button type="primary" @click="submitForm('user')">注册</el-button>
+        <el-button type="primary" @click="resetForm('user')">重置</el-button>
+        <el-button type="primary" @click="close(false)">关闭</el-button>
       </el-form-item>
     </el-form>
+
+
   </div>
 </template>
 <script>
@@ -73,10 +76,11 @@
             var data = JSON.stringify(this.user)
             this.$http.post(url, data)
               .then((res) => {
-                console.debug("-----tttt----", res.data.token)
+                console.debug("-----tttt----", res.data)
                 sessionStorage.setItem('token', res.data.token)
                 this.$store.commit('SET_BASEINFO', res.data)
-                this.$router.push({path: '/catw/welcome'})
+                this.$router.push({path: '/home/welcome'})
+                this.close(true)
               })
           } else {
             console.log('error submit!!');
@@ -86,6 +90,9 @@
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
+      },
+      close(needRefresh = false){
+        this.$emit('close', needRefresh)
       }
     }
   }

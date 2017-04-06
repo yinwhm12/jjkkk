@@ -12,5 +12,5 @@ export default new Vuex.Store({
     userInfo
   },
   strict: debug,
-  middlewares: debug ? [] : []
+  // middlewares: debug ? [] : []
 })

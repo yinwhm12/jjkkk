@@ -59,10 +59,10 @@
     </el-row>
     <el-dialog :title="dialogType?'注册':'登录'" size="tiny" v-model="isShowDialog">
       <span v-if="dialogType===0">
-        <dialog_login></dialog_login>
+        <dialog_login @close="onEditClose"></dialog_login>
       </span>
       <span v-else>
-      <dialog_register></dialog_register>
+      <dialog_register @close="onEditClose"></dialog_register>
       </span>
     </el-dialog>
   </div>
@@ -73,11 +73,10 @@
   export default {
     components: {
       Dialog_login,
-      Dialog_register
+      Dialog_register,
     },
     data() {
       return {
-
         isShowDialog: false,//是否弹出界面
         dialogType: 0,//弹出界面类型  0为登录 1为注册
         input2: '',
@@ -98,13 +97,12 @@
         this.isShowDialog = true;
         this.dialogType = 1;
       },
-      handleSelect(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleconClick(ev){
-        console.log(ev);
-      },
       handleIconClick(){
+      },
+      onEditClose(needRefresh){
+        this.isShowDialog = false;
+      },
+      handleSelect(){
 
       },
     }

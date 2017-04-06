@@ -12,7 +12,7 @@
 
 <script>
   import HeadView from './components/publish/head.vue'
-  import BoardView from './components/publish/board.vue'
+  //  import BoardView from './components/publish/board.vue'
   import FooterView from './components/publish/footer.vue'
   //  import UserView from './components/user/user_info.vue'
 export default {

@@ -8,8 +8,9 @@
         <el-input type="password" v-model="user.pass" auto-complete="off"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="submitForm('user')">立即创建</el-button>
-        <el-button @click="resetForm('user')">重置</el-button>
+        <el-button type="primary" @click="submitForm('user')">登录</el-button>
+        <el-button type="primary" @click="resetForm('user')">重置</el-button>
+        <el-button type="primary" @click="close(false)"></el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -58,6 +59,9 @@
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
+      },
+      colse(needRefresh = false){
+        this.$emit('close', needRefresh)
       }
     }
   }

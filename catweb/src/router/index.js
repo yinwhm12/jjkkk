@@ -6,7 +6,7 @@ import ElementUI from 'element-ui'
 // import Head from '../components/publish/head.vue'
 import board from '../components/publish/board.vue'
 import welcome from '../components/Welcome.vue'
-import main_body from '../components/main_body.vue'
+import Mian from '../components/publish/main.vue'
 
 import 'element-ui/lib/theme-default/index.css'
 
@@ -52,15 +52,15 @@ export default new Router({
   // base: _dirname,
   routes: [
     {
-      path: '/catw',
-      name: 'catw',
-      component: main_body,
+      path: '/home',
+      component: Mian,
       children: [
         {
           name: 'board',
           path: '/',
           component: board
-        }, {
+        },
+        {
           name: 'welcome',
           path: 'welcome',
           component: welcome

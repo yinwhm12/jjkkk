@@ -10,7 +10,7 @@ const state = {
   //保存第一页数据 用户数据
   id: '',
   accessToken: '',
-  name: '',
+  // name: '',
   email: ''
 }
 
@@ -20,7 +20,7 @@ const mutations = {
     try {
       state.id = data.id
       state.accessToken = data.accessToken
-      state.name = data.name
+      // state.name = data.name
       state.email = data.email
     } catch (err) {
       console.log(err)
