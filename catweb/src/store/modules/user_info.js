@@ -25,6 +25,11 @@ const mutations = {
     } catch (err) {
       console.log(err)
     }
+  },
+  reset(state){
+    state.id = '',
+      state.email = '',
+      state.accessToken = ''
   }
 }
 

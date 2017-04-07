@@ -34,17 +34,15 @@
       <el-col :lg="4" :sm="1" :md="3" :xs="1">
         <div class="grid-content-right bg-purple-dark">
           <div class="right-head">
-            <!--<span v-if=""></span>-->
-
-            <span v-if="user===null">
-                <el-dropdown>
+            <span v-if="mapUserInfo.id !== ''">
+                <el-dropdown @command="personMenu">
                   <span class="el-dropdown-link dropdown">
-                    {{user.email}}
+                    {{mapUserInfo.email}}
                   </span>
                   <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>个人资料设置</el-dropdown-item>
-                    <el-dropdown-item divided>我的收藏</el-dropdown-item>
-                    <el-dropdown-item divided>退出</el-dropdown-item>
+                    <el-dropdown-item command="personal_data">个人资料设置</el-dropdown-item>
+                    <el-dropdown-item divided command="collection">我的收藏</el-dropdown-item>
+                    <el-dropdown-item divided command="logout">退出</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
               </span>
@@ -70,6 +68,7 @@
 <script>
   import Dialog_login from "./login.vue"
   import Dialog_register from "./register.vue"
+  import {mapState} from 'vuex'
   export default {
     components: {
       Dialog_login,
@@ -87,6 +86,10 @@
         },
         formLabelWidth: '120px'
       };
+    }, computed: {
+      ...mapState({
+        mapUserInfo: ({userInfo}) => userInfo,
+      })
     },
     methods: {
       login(){
@@ -105,6 +108,18 @@
       handleSelect(){
 
       },
+      personMenu(command){
+        if (command === "personal_data") {
+
+        } else if (command === "collection") {
+
+        } else if (command === "logout") {
+          this.$store.commit('reset')
+//          this.$router.push({path: '/home'})
+        } else {
+
+        }
+      }
     }
   }
 </script>

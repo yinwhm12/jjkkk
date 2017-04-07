@@ -50,7 +50,14 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            alert('submit!');
+//            alert('submit!');
+            var url = '/session/'
+            var data = JSON.stringify(this.user)
+            this.$http.post(url, data)
+              .then((res) => {
+                this.$store.commit('SET_BASEINFO', res.data)
+                this.close(true)
+              })
           } else {
             console.log('error submit!!');
             return false;

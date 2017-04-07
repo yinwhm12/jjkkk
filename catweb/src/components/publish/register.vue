@@ -21,7 +21,6 @@
   </div>
 </template>
 <script>
-  import {mapState} from 'vuex'
   export default {
     data() {
       var validatePass = (rule, value, callback) => {
