@@ -7,6 +7,7 @@ import ElementUI from 'element-ui'
 import board from '../components/publish/board.vue'
 import welcome from '../components/Welcome.vue'
 import Mian from '../components/publish/main.vue'
+import WriteView from '../components/write.vue'
 
 import 'element-ui/lib/theme-default/index.css'
 
@@ -64,6 +65,10 @@ export default new Router({
           name: 'welcome',
           path: 'welcome',
           component: welcome
+        }, {
+          name: 'write_article',
+          path: 'article',
+          component: WriteView
         }
       ]
     }, {
