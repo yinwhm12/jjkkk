@@ -17,18 +17,44 @@
               <div class="c-font">
                 <span class="red-sign">*</span>
                 标题
-
                 <el-cascader
-                  expand-trigger="hover"
-                  :options="options"
-                  :props="props"
-                  v-model="selectType"
-                  placeholder="请选择类型"
-                  size="small"
-                  @change="handleChange">
+                expand-trigger="hover"
+                :options="options"
+                :props="props"
+                v-model="selectType"
+                placeholder="请选择类型"
+                size="small"
+                class="theme"
+                @change="handleChange">
                 </el-cascader>
+                <el-input v-model="input" placeholder="请输入标题" class="input" size="small"></el-input>
+              </div>
+            </el-col>
+          </el-row>
+
+          <!--内容-->
+          <el-row style="margin-bottom: 0">
+            <el-col :push="2" :span="2">
+              <div class="c-font">
+                <span class="red-sign">*</span>内容
 
               </div>
+            </el-col>
+            <el-col :push="2" :span="20">
+              <div>
+                <el-input
+                  type="textarea"
+                  :autosize="{minRows:15,maxRows: 50}"
+                  placeholder="请输入内容"
+                  v-model="textarea2">
+                </el-input>
+              </div>
+            </el-col>
+          </el-row>
+
+          <el-row>
+            <el-col :push="8" :span="12">
+              <el-button type="primary">发布</el-button>
             </el-col>
           </el-row>
 
@@ -51,7 +77,9 @@
         root2Type: [],
         selectedOptions2: [],
         selectType: [],
-        ss: []
+        ss: [],
+        input: '',
+        textarea2: ''
 
       }
     },
@@ -84,17 +112,13 @@
           option.label = this.levelType[i].level_type_name
           option.value = this.levelType[i].level_type_id
           this.ss.push(option)
-          console.debug("level-", this.levelType[i].level_type_name)
         }
       },
 
       root2Type(){
-        console.debug("======", this.ss)
         for (let i = 0; i < this.root2Type.length; ++i) {
           var option = {}
-          console.log("-----------------")
           option.label = this.root2Type[i].root_2_type_name
-          console.log("-----------------", option.label)
           option.value = this.root2Type[i].root_2_type_id
           option.ctype = this.ss
           this.options.push(option)
@@ -111,6 +135,10 @@
 </script>
 
 <style scoped="scoped">
+  body {
+    margin: 0 0;
+    padding: 0 0;
+  }
   .content-height {
     height: 700px;
   }
@@ -127,11 +155,20 @@
   }
 
   .c-font {
-    font-size: 25px;
+    font-size: 22px;
     font-weight: 100;
   }
 
-  .el-input.el-input--smaill {
-    width: 150px;
+  .input {
+    width: 250px;
   }
+
+  .theme {
+    width: 180px;
+  }
+
+  .content {
+    height: 300px !important;
+  }
+
 </style>
