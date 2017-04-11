@@ -42,6 +42,8 @@
                   <el-dropdown-menu slot="dropdown">
                     <el-dropdown-item command="personal_data">个人资料设置</el-dropdown-item>
                     <el-dropdown-item divided command="collection">我的收藏</el-dropdown-item>
+                    <el-dropdown-item divided command="write_article">写文章</el-dropdown-item>
+                    <el-dropdown-item divided command="write_post">发帖子</el-dropdown-item>
                     <el-dropdown-item divided command="logout">退出</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
@@ -84,7 +86,8 @@
           name: '',
           email: 'yinwhm12',
         },
-        formLabelWidth: '120px'
+        formLabelWidth: '120px',
+        article_type: ''
       };
     }, computed: {
       ...mapState({
@@ -116,6 +119,12 @@
         } else if (command === "logout") {
           this.$store.commit('reset')
 //          this.$router.push({path: '/home'})
+        } else if (command === "write_article") {
+          this.article_type = 'root_1'
+          this.$router.push({path: '/home/article'})
+
+        } else if (command === "write_post") {
+
         } else {
 
         }

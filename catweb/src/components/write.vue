@@ -27,7 +27,7 @@
                 class="theme"
                 @change="handleChange">
                 </el-cascader>
-                <el-input v-model="input" placeholder="请输入标题" class="input" size="small"></el-input>
+                <el-input v-model="article.title" placeholder="请输入标题" class="input" size="small"></el-input>
               </div>
             </el-col>
           </el-row>
@@ -46,7 +46,7 @@
                   type="textarea"
                   :autosize="{minRows:15,maxRows: 50}"
                   placeholder="请输入内容"
-                  v-model="textarea2">
+                  v-model="article.text_content">
                 </el-input>
               </div>
             </el-col>
@@ -67,7 +67,7 @@
 
           <el-row>
             <el-col :push="8" :span="12">
-              <el-button type="primary" @click="publish">发布</el-button>
+              <el-button type="primary" @click="post">发布</el-button>
             </el-col>
           </el-row>
 
@@ -79,6 +79,7 @@
 
 <script>
   export default{
+    props: ['article_type'],
     data(){
       return {
         options: [],
@@ -91,8 +92,10 @@
         selectedOptions2: [],
         selectType: [],
         ss: [],
-        input: '',
-        textarea2: '',
+        article: {
+          title: '',
+          text_content: '',
+        },
         fileList: []
       }
     },
@@ -114,7 +117,35 @@
             this.root2Type = res.data
           }))
       },
-      publish(){
+      check(){
+        if (this.selectType.length === 0) {
+          return "请选择标题类型!"
+        }
+        if (this.article === null || this.article.title === '') {
+          return "请输入标题!"
+        }
+        if (this.article === null || this.article.text_content === '') {
+          return "请输入内容!"
+        }
+        return ''
+      },
+      post(){
+        let errInfo = this.check()
+        if (errInfo) {
+          this.$message({
+            type: 'warning',
+            message: errInfo
+          })
+          return
+        }
+        let body = json()
+        body.put("article_type", this.article_type)
+        body.put("selectType", this.selectType)
+        body.put("article", this.article_type)
+        this.$http.post('/article/', body)
+          .then((res) => {
+            this.$message("ok");
+          })
 
       },
       handleRemove(file, fileList) {
