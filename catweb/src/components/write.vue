@@ -40,7 +40,7 @@
 
               </div>
             </el-col>
-            <el-col :push="2" :span="20">
+            <el-col :push="2" :span="16">
               <div>
                 <el-input
                   type="textarea"
@@ -50,11 +50,24 @@
                 </el-input>
               </div>
             </el-col>
+            <el-col :push="2" :span="4">
+              <el-upload
+                class="upload-demo"
+                action="//up.qbox.me"
+                :on-preview="handlePreview"
+                :on-remove="handleRemove"
+                :on-success="upSuccess"
+                :before-upload="handleBefore"
+                :file-list="fileList">
+                <el-button size="large" type="primary">点击上传</el-button>
+                <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+              </el-upload>
+            </el-col>
           </el-row>
 
           <el-row>
             <el-col :push="8" :span="12">
-              <el-button type="primary">发布</el-button>
+              <el-button type="primary" @click="publish">发布</el-button>
             </el-col>
           </el-row>
 
@@ -79,8 +92,8 @@
         selectType: [],
         ss: [],
         input: '',
-        textarea2: ''
-
+        textarea2: '',
+        fileList: []
       }
     },
     methods: {
@@ -101,6 +114,33 @@
             this.root2Type = res.data
           }))
       },
+      publish(){
+
+      },
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePreview(file) {
+        console.log(file);
+      },
+      handleBefore(file){
+        const isJPG = file.type === 'image/jpeg';
+//          const isGIF = file.type === 'image/gif'
+        const isLt2M = file.size / 1024 / 1024 < 2;
+        const isGIF = file.type === 'image/gif';
+        console.log("----file");
+        if (!isJPG && !isGIF) {
+          console.log("----file---");
+          this.$message.error('上传头像图片只能是 JPG/GIF 格式!');
+        }
+        if (!isLt2M) {
+          this.$message.error("上传头像图片大小不能超过 2MB!");
+        }
+        return (isJPG || isGIF) && isLt2M
+      },
+      upSuccess(file){
+
+      }
     },
     created: function () {
 
@@ -169,6 +209,10 @@
 
   .content {
     height: 300px !important;
+  }
+
+  .up {
+    padding-top: 0 !important;
   }
 
 </style>
