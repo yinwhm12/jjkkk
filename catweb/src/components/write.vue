@@ -151,10 +151,14 @@
           return
         }
         let body = {
+          "article_root_1": 1,
           "article_title": this.article.title,
-          "article_content": this.article.text_content
+          "article_content": this.article.text_content,
+          "article_root_2": this.root2_id,
+          "article_level": this.level_id,
         }
-        this.$http.post('/article/', body)
+        var data = JSON.stringify(body)
+        this.$http.post('/article/', data)
           .then((res) => {
             this.$message("ok");
           })

@@ -87,7 +87,7 @@
           email: 'yinwhm12',
         },
         formLabelWidth: '120px',
-        article_type: ''
+        article_type: 0,
       };
     }, computed: {
       ...mapState({
@@ -120,7 +120,7 @@
           this.$store.commit('reset')
 //          this.$router.push({path: '/home'})
         } else if (command === "write_article") {
-          this.article_type = 'root_1'
+          this.article_type = '1'
           this.$router.push({path: '/home/article'})
 
         } else if (command === "write_post") {
