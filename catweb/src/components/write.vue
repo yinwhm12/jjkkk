@@ -96,12 +96,24 @@
           title: '',
           text_content: '',
         },
-        fileList: []
+        fileList: [],
+        level_id: 0,
+        root2_id: 0,
       }
     },
     methods: {
       handleChange(){
         console.debug("ggggggg", this.selectType)
+        console.debug("gggglll", this.levelType)
+        console.debug("gggrrrr", this.root2Type)
+//        let level = JSON.stringify(this.levelType)
+//        var json= eval('('+level+')');
+//        console.debug("===",json)
+//        for(var name in json){
+//
+//            console.debug("---1",name)
+//            console.debug("---",json[name])
+//        }
       },
       getLevelType: function () {
         var url = '/level_type/'
@@ -138,10 +150,10 @@
           })
           return
         }
-        let body = json()
-        body.put("article_type", this.article_type)
-        body.put("selectType", this.selectType)
-        body.put("article", this.article_type)
+        let body = {
+          "article_title": this.article.title,
+          "article_content": this.article.text_content
+        }
         this.$http.post('/article/', body)
           .then((res) => {
             this.$message("ok");
@@ -171,7 +183,15 @@
       },
       upSuccess(file){
 
-      }
+      },
+      //获取一级目录信息
+      getRoot2Info(){
+
+      },
+      //获得二级目录信息
+      getLevelInfo(){
+
+      },
     },
     created: function () {
 
@@ -195,6 +215,25 @@
           this.options.push(option)
         }
         this.options.ctyp = this.ss
+      },
+      selectType(){
+        if (this.levelType.length > 0) {
+          for (let i = 0; i < this.levelType.length; i++) {
+            if (this.levelType[i].level_type_name === this.selectType[1]) {
+              this.level_id = this.levelType[i].level_type_id
+              break
+            }
+          }
+        }
+        if (this.root2Type.length > 0) {
+          for (let i = 0; i < this.levelType.length; i++) {
+            if (this.root2Type[i].root_2_type_name === this.selectType[0]) {
+              this.root2_id = this.root2Type[i].root_2_type_id
+              break
+            }
+          }
+        }
+        console.debug("pppp", this.level_id, this.root2_id)
       },
     },
     mounted: function () {
