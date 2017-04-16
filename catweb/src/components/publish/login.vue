@@ -51,6 +51,8 @@
               .then((res) => {
                 console.debug("---", res.data)
                 this.$store.commit('SET_BASEINFO', res.data)
+                //将token放在本地的header
+                sessionStorage.setItem('token', res.data.token)
                 this.close(true)
               })
           } else {

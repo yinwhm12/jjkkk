@@ -161,7 +161,23 @@
         this.$http.post('/article/', data)
           .then((res) => {
             this.$message("ok");
+            data = res.data
+            console.debug("-----ddd", data)
           })
+          .catch((err) => {
+            console.debug("--------")
+            this.$message({
+              type: 'warning',
+              message: '请登录操作!'
+            })
+          })
+        if (data === 'fail') {
+          console.debug("--------====")
+          this.$message({
+            type: 'warning',
+            message: '请登录操作!'
+          })
+        }
 
       },
       handleRemove(file, fileList) {

@@ -24,31 +24,7 @@ const About = {
 }
 
 
-
-Vue.http.interceptors.push((request,next) => {
-  var xtoken = sessionStorage.getItem("token")
-  if (xtoken) {
-    request.headers.set('Authorization', xtoken)
-  }
-  let host = ENV.HOST_URL
-  if (request.url.indexOf(host) != 0){
-    request.url = host + request.url
-  }
-  next((response) => {
-    if (response.status === 401) {
-      router.push({path: '/home/welcome'})
-    } else if (response.status !== 200) {
-      let message = response.status !== 0 ? response.body : "请检查网络"
-      Vue.prototype.$message({
-        message: message,
-        type: 'warning'
-      })
-    }
-    return response
-  })
-})
-
-export default new Router({
+export  default  new Router({
   // mode: 'hash',
   // base: _dirname,
   routes: [
@@ -84,4 +60,30 @@ export default new Router({
   ]
 })
 
+Vue.http.interceptors.push((request, next) => {
+  var xtoken = sessionStorage.getItem("token")
+  if (xtoken) {
+    request.headers.set('Authorization', xtoken)
+  }
+  let host = ENV.HOST_URL
+  if (request.url.indexOf(host) !== 0) {
+    request.url = host + request.url
+  }
+  next((response) => {
+    if (response.status === 401) {
+      // Router.routes.push({path: '/home/board'})
+      Vue.prototype.$message({
+        message: '请登录!',
+        type: 'warning'
+      })
 
+    } else if (response.status !== 200) {
+      let message = response.status !== 0 ? response.body : "请检查网络"
+      Vue.prototype.$message({
+        message: message,
+        type: 'warning'
+      })
+    }
+    return response
+  })
+})
