@@ -7,16 +7,16 @@
       <el-col :lg="10" :xs="20" :sm="18" :md="14">
         <el-menu theme="dark" class="grid-content el-menu" mode="horizontal"
                  @select="handleSelect">
-          <el-menu-item index="1">处理中心</el-menu-item>
+          <el-menu-item index="1">社区中心</el-menu-item>
           <el-submenu index="2">
-            <template slot="title">我的工作台</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
+            <template slot="title">科目天地</template>
+            <el-menu-item index="2-1">语文</el-menu-item>
+            <el-menu-item index="2-2">数学</el-menu-item>
+            <el-menu-item index="2-3">英语</el-menu-item>
           </el-submenu>
-          <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
-          <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
-          <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">订单管理</a></el-menu-item>
+          <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">文章</a></el-menu-item>
+          <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">帖子</a></el-menu-item>
+          <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">课间操</a></el-menu-item>
         </el-menu>
       </el-col>
       <el-col :lg="3" :sm="2" :md="2" :xs="1">
