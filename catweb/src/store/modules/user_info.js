@@ -11,7 +11,8 @@ const state = {
   id: '',
   accessToken: '',
   // name: '',
-  email: ''
+  email: '',
+  article_type: 0
 }
 
 const mutations = {
@@ -30,6 +31,10 @@ const mutations = {
     state.id = '',
       state.email = '',
       state.accessToken = ''
+  },
+  setArticleType(state, data){
+    console.debug("------", data)
+    state.article_type = data
   }
 }
 

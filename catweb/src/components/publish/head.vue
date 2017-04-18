@@ -121,11 +121,12 @@
 //          this.$router.push({path: '/home'})
           sessionStorage.removeItem('token')
         } else if (command === "write_article") {
-          this.article_type = '1'
+          this.$store.commit("setArticleType", 1)
           this.$router.push({path: '/home/article'})
 
         } else if (command === "write_post") {
-
+          this.$store.commit("setArticleType", 2)
+          this.$router.push({path: '/home/article'})
         } else {
 
         }

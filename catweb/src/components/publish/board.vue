@@ -25,16 +25,16 @@
                                 最新资料<span style="float: right"> 更多>></span>
                                 <div>
                                   <el-table
-                                    :data="tableData"
+                                    :data="ones"
                                     :show-header="false"
                                     style="height: 220px">
                                     <el-table-column
-                                      prop="title"
+                                      prop="ones.title"
                                     >
                                     </el-table-column>
                                     <el-table-column
                                       style="float: right"
-                                      prop="date"
+                                      prop="ones.created_time"
                                     >
                                     </el-table-column>
 
@@ -104,6 +104,7 @@
     },
     data(){
       return {
+        ones: [],
         tableData: [{
           title: '2016-05-02',
           date: '2016-05-02'

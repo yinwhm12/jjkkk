@@ -78,8 +78,10 @@
 </template>
 
 <script>
+  import {mapState} from 'vuex'
+
   export default{
-    props: ['article_type'],
+//    props: ['article_type'],
     data(){
       return {
         options: [],
@@ -100,6 +102,12 @@
         level_id: 0,
         root2_id: 0,
       }
+    },
+    computed: {
+      ...mapState({
+        mapUserInfo: ({userInfo}) => userInfo,
+      }),
+
     },
     methods: {
       handleChange(){
@@ -151,7 +159,7 @@
           return
         }
         let body = {
-          "article_root_1": 1,
+          "article_root_1": this.mapUserInfo.article_type,
           "article_title": this.article.title,
           "article_content": this.article.text_content,
           "article_root_2": this.root2_id,
@@ -212,6 +220,9 @@
       getLevelInfo(){
 
       },
+      load(){
+        console.debug("----eee-", this.mapUserInfo.article_type)
+      }
     },
     created: function () {
 
@@ -259,6 +270,8 @@
     mounted: function () {
       this.getLevelType();
       this.getRoot2Type();
+      this.load();
+
     },
 
   }
