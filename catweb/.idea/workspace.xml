@@ -7,10 +7,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f79c3245-bf67-48b9-bf94-44afbd9555cb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/publish/board.vue" afterPath="$PROJECT_DIR$/src/components/publish/board.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/publish/head.vue" afterPath="$PROJECT_DIR$/src/components/publish/head.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/write.vue" afterPath="$PROJECT_DIR$/src/components/write.vue" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/store/modules/user_info.js" afterPath="$PROJECT_DIR$/src/store/modules/user_info.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,7 +50,7 @@
                   <caret line="161" column="57" lean-forward="false" selection-start-line="161" selection-start-column="57" selection-end-line="161" selection-end-column="57" />
                   <folding>
                     <element signature="n#style#0;n#el-row#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="e#6860#7521#0" expanded="false" />
+                    <element signature="e#6859#7520#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -93,11 +89,11 @@
             <entry file="file://$PROJECT_DIR$/src/store/modules/user_info.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="792">
-                  <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+                  <caret line="35" column="32" lean-forward="false" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
                   <folding>
                     <element signature="e#49#115#0" expanded="true" />
-                    <marker date="1492527475905" expanded="true" signature="131:181" ph="{&quot;id&quot;: ''...}" />
-                    <marker date="1492527475905" expanded="true" signature="297:585" ph="{...}" />
+                    <marker date="1492529336374" expanded="true" signature="131:181" ph="{&quot;id&quot;: ''...}" />
+                    <marker date="1492529336374" expanded="true" signature="297:585" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -554,7 +550,7 @@
       <workItem from="1492263807745" duration="4185000" />
       <workItem from="1492313762480" duration="25898000" />
       <workItem from="1492437087773" duration="4033000" />
-      <workItem from="1492522193019" duration="6998000" />
+      <workItem from="1492522193019" duration="7277000" />
     </task>
     <task id="LOCAL-00001" summary="new">
       <created>1490872660491</created>
@@ -619,11 +615,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492442589060</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="4.18">
+      <created>1492529347585</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1492529347585</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="207633000" />
+    <option name="totallyTimeSpent" value="207912000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -703,7 +706,8 @@
     <MESSAGE value="文章 界面处理" />
     <MESSAGE value="主页面 文章等修改 4.16" />
     <MESSAGE value="4.17" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.17" />
+    <MESSAGE value="4.18" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.18" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1066,11 +1070,11 @@
     <entry file="file://$PROJECT_DIR$/src/store/modules/user_info.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="792">
-          <caret line="35" column="31" lean-forward="false" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+          <caret line="35" column="32" lean-forward="false" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="32" />
           <folding>
             <element signature="e#49#115#0" expanded="true" />
-            <marker date="1492527475905" expanded="true" signature="131:181" ph="{&quot;id&quot;: ''...}" />
-            <marker date="1492527475905" expanded="true" signature="297:585" ph="{...}" />
+            <marker date="1492529336374" expanded="true" signature="131:181" ph="{&quot;id&quot;: ''...}" />
+            <marker date="1492529336374" expanded="true" signature="297:585" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1081,7 +1085,7 @@
           <caret line="161" column="57" lean-forward="false" selection-start-line="161" selection-start-column="57" selection-end-line="161" selection-end-column="57" />
           <folding>
             <element signature="n#style#0;n#el-row#2;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="e#6860#7521#0" expanded="false" />
+            <element signature="e#6859#7520#0" expanded="false" />
           </folding>
         </state>
       </provider>
