@@ -6,7 +6,11 @@
           <el-row>
             <el-col>
               <div class="theme-font">
-                主页/社区/文章
+                主页/社区/
+                <span v-if="mapUserInfo.article_type === 1">文章</span>
+                <span v-else-if="mapUserInfo.article_type === 2">帖子</span>
+                <span v-else-if="mapUserInfo.article_type === 3">课间操</span>
+                <span v-else>??</span>
 
               </div>
             </el-col>

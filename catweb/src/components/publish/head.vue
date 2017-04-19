@@ -44,6 +44,7 @@
                     <el-dropdown-item divided command="collection">我的收藏</el-dropdown-item>
                     <el-dropdown-item divided command="write_article">写文章</el-dropdown-item>
                     <el-dropdown-item divided command="write_post">发帖子</el-dropdown-item>
+                    <el-dropdown-item divided command="rest_time">说说</el-dropdown-item>
                     <el-dropdown-item divided command="logout">退出</el-dropdown-item>
                   </el-dropdown-menu>
                 </el-dropdown>
@@ -126,6 +127,9 @@
 
         } else if (command === "write_post") {
           this.$store.commit("setArticleType", 2)
+          this.$router.push({path: '/home/article'})
+        } else if (command === "rest_time") {
+          this.$store.commit("setArticleType", 3)
           this.$router.push({path: '/home/article'})
         } else {
 

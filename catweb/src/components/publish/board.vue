@@ -135,7 +135,16 @@
         },
         ]
       }
+    },
+    mounted: function () {
+      let url = '/article/getNine/3'
+      this.$http.get(url)
+        .then((res) => {
+          this.ones = res.data
+          console.debug("--------", this.ones)
+        })
     }
+
   }
 </script>
 
