@@ -54,6 +54,7 @@
                 //将token放在本地的header
                 sessionStorage.setItem('token', res.data.token)
                 this.close(true)
+
               })
           } else {
             console.log('error submit!!');

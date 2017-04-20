@@ -27,14 +27,17 @@
                                   <el-table
                                     :data="ones"
                                     :show-header="false"
+                                    @row-click='open'
                                     style="height: 220px">
                                     <el-table-column
-                                      prop="ones.title"
+                                      prop="title"
                                     >
+                                      <!--<template scope="scope">-->
+                                      <!--<p>{{scope.row.title}}</p></template>-->
                                     </el-table-column>
                                     <el-table-column
                                       style="float: right"
-                                      prop="ones.created_time"
+                                      prop="created_time"
                                     >
                                     </el-table-column>
 
@@ -53,8 +56,9 @@
                                 热门帖子<span style="float: right"> 更多>></span>
                                 <div>
                                   <el-table
-                                    :data="tableData"
+                                    :data="twos"
                                     :show-header="false"
+                                    :cell-click="open()"
                                     style="height: 220px">
                                     <el-table-column
                                       prop="title"
@@ -62,7 +66,7 @@
                                     </el-table-column>
                                     <el-table-column
                                       style="float: right"
-                                      prop="date"
+                                      prop="created_time"
                                     >
                                     </el-table-column>
 
@@ -96,53 +100,68 @@
 <script type="text/ecmascript-6">
   import PartTwo from '../part_two.vue'
   import ArticleTheme from '../article_theme.vue'
+  import Util from '../../utiljs/utils'
 
   export default{
     components: {
       ArticleTheme,
       PartTwo,
     },
-    data(){
+    data: function () {
       return {
         ones: [],
+        twos: [],
         tableData: [{
           title: '2016-05-02',
           date: '2016-05-02'
-        }, {
-          title: '2016-05-02',
-          date: '2016-05-02'
-        }, {
-          title: '2016-05-02',
-          date: '2016-05-02'
-        }, {
-          title: '2016-05-02',
-          date: '2016-05-02'
-        }, {
-          title: '2016-05-02',
-          date: '2016-05-02'
-        }, {
-          title: '2016-05-02',
-          date: '2016-05-02'
-        }, {
-          title: '2016-05-02',
-          date: '2016-05-02'
-        }, {
-          title: '2016-05-02',
-          date: '2016-05-02'
-        }, {
-          title: '2016-05-02',
-          date: '2016-05-02'
-        },
+        }
         ]
       }
     },
     mounted: function () {
-      let url = '/article/getNine/3'
-      this.$http.get(url)
-        .then((res) => {
-          this.ones = res.data
-          console.debug("--------", this.ones)
-        })
+      this.getOne();
+      this.getTwo();
+    },
+    watch: {},
+    methods: {
+      getOne(){
+        let url = '/article/getNine/3'
+        this.$http.get(url)
+          .then((res) => {
+            let ss = res.data
+//              this.ones = res.data
+            if (ss.length !== 0) {
+              var newDate = new Date()
+              for (let i in ss) {
+                var option = {}
+                option.title = ss[i].title
+                newDate.setTime(ss[i].created_time * 1000)
+                option.created_time = newDate.toLocaleString()
+                this.ones.push(option)
+              }
+            }
+          })
+      },
+      getTwo(){
+        let url = '/article/getNine/2'
+        this.$http.get(url)
+          .then((res) => {
+            let ss = res.data
+            if (ss.length !== 0) {
+              var newDate = new Date()
+              for (let i in ss) {
+                var option = {}
+                option.title = ss[i].title
+                newDate.setTime(ss[i].created_time * 1000)
+                option.created_time = newDate.toLocaleString()
+                this.twos.push(option)
+              }
+            }
+          })
+      },
+      open(row){
+        console.log("-------hello")
+      }
     }
 
   }
@@ -151,7 +170,6 @@
 <style>
   .body-height {
     max-height: 2000px;
-    min-height: 500px;
     height: 1200px;
   }
 

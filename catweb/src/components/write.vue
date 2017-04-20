@@ -95,7 +95,6 @@
         },
         levelType: [],
         root2Type: [],
-        selectedOptions2: [],
         selectType: [],
         ss: [],
         article: {
