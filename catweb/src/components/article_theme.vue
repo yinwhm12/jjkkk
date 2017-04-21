@@ -25,15 +25,15 @@
                     </el-col>
                   </el-row>
                   <el-row :gutter="20">
-                    <el-col :span="8">
+                    <el-col :span="6">
                       <!--作者-->
                       {{ item.user.email }}
 
                     </el-col>
-                    <el-col :span="4">
+                    <el-col :span="6">
                       <!--时间-->
-                      {{ item.created_time}}
-
+                      <!--{{ new Date(item.created_time).toLocaleString()}}-->
+                      {{ item.created_time | time}}
                     </el-col>
                     <el-col :span="4">
                       赞

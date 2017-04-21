@@ -58,7 +58,6 @@
                                   <el-table
                                     :data="twos"
                                     :show-header="false"
-                                    :cell-click="open()"
                                     style="height: 220px">
                                     <el-table-column
                                       prop="title"
@@ -134,6 +133,7 @@
               var newDate = new Date()
               for (let i in ss) {
                 var option = {}
+                option.id = ss[i].tid
                 option.title = ss[i].title
                 newDate.setTime(ss[i].created_time * 1000)
                 option.created_time = newDate.toLocaleString()
@@ -151,6 +151,7 @@
               var newDate = new Date()
               for (let i in ss) {
                 var option = {}
+                option.id = ss[i].tid
                 option.title = ss[i].title
                 newDate.setTime(ss[i].created_time * 1000)
                 option.created_time = newDate.toLocaleString()
@@ -161,6 +162,7 @@
       },
       open(row){
         console.log("-------hello")
+        console.log("-------hellorow",row)
       }
     }
 

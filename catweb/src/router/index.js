@@ -8,6 +8,7 @@ import board from '../components/publish/board.vue'
 import welcome from '../components/Welcome.vue'
 import Mian from '../components/publish/main.vue'
 import WriteView from '../components/write.vue'
+import ReadArticle from '../components/read_article.vue'
 
 import 'element-ui/lib/theme-default/index.css'
 
@@ -45,6 +46,10 @@ export  default  new Router({
           name: 'write_article',
           path: 'article',
           component: WriteView
+        },{
+          name: 'read_article',
+          path: 'read_article',
+          component: ReadArticle
         }
       ]
     }, {
@@ -86,4 +91,43 @@ Vue.http.interceptors.push((request, next) => {
     }
     return response
   })
+})
+
+Date.prototype.format = function (format) {
+  var date = {
+    "M+": this.getMonth() + 1,
+    "d+": this.getDate(),
+    "h+": this.getHours(),
+    "m+": this.getMinutes(),
+    "s+": this.getSeconds(),
+    "q+": Math.floor((this.getMonth() + 3) / 3),
+    "S+": this.getMilliseconds()
+  };
+  if (/(y+)/i.test(format)) {
+    format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+  }
+  for (var k in date) {
+    if (new RegExp("(" + k + ")").test(format)) {
+      format = format.replace(RegExp.$1, RegExp.$1.length == 1
+        ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+    }
+  }
+  return format;
+}
+
+Vue.filter("stampToTimeFull", (timestamp) => {
+  "use strict";
+  if (!timestamp) {
+    return ""
+  }
+  let newDate = new Date()
+  newDate.setTime(timestamp * 1000)
+  return newDate.format('yyyy-MM-dd hh:mm:ss')
+})
+
+Vue.filter('time', function (value) {
+  let newDate = new Date()
+  newDate.setTime(value * 1000)
+  return newDate.format('yyyy/MM/dd hh:mm:ss')
+  // return new Date(parseInt(value) * 1000).toLocaleString().replace(/年|月/g, "-").replace(/日/g, " ");
 })
