@@ -1,23 +1,39 @@
 <template>
   <div>
+
   <el-row>
     <el-col :span="14" :push="5" :pull="5"><div class="grid-content bg-purple-light body-height">
       <!--主体-->
+
+      <div>
+        <el-button @click="close(false)">关闭</el-button>
+      </div>
+
+
       <el-row>
         <el-col>
             <div class="title-head">
-              主体
+              <!--主体-->
+              {{article.title}}
             </div>
         </el-col>
       </el-row>
         <!--发布时间 作者  阅读次数 赞-->
       <el-row>
         <el-col :span="8">
-          <div class="second-head"><i class="el-icon-date"></i>时间</div>
+          <div class="second-head"><i class="el-icon-date"></i>
+            <!--时间-->
+            {{article.created_time | time }}
+
+          </div>
         </el-col>
 
         <el-col :span="8">
-          <div class="second-head"><i class="el-icon-caret-right"></i>作者</div>
+          <div class="second-head"><i class="el-icon-caret-right"></i>
+            <!--作者-->
+            {{ article.user.email }}
+
+          </div>
         </el-col>
 
         <el-col :span="5">
@@ -47,6 +63,14 @@
 
     </div></el-col>
   </el-row>
+    <!--关闭操作-->
+    <el-row>
+      <el-col>
+        <p>
+          <el-button @click="close(false)">关闭</el-button>
+        </p>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -66,18 +90,44 @@
     min-height: 20px;
     font-size: 16px;
   }
+
+  .close-button {
+    padding: 0;
+    margin: 0;
+  }
 </style>
 
 <script>
   import CommentsView from './comments.vue'
   export default {
+    props: ["article_id"],
   components:{
     CommentsView
   },
-    data (){
+    data: function () {
           return{
-              textarea: ''
+            textarea: '',
+            article: {},
           }
+    },
+    methods: {
+      close(needRefresh = false){
+        this.$emit('close', needRefresh)
       }
+
+    },
+    watch: {
+//      article_id(){
+//          console.debug("-------id",this.article_id)
+//      }
+    },
+    mounted: function () {
+      console.debug("id----", this.article_id)
+      this.$http.get('/article/getOne/' + this.article_id)
+        .then((res => {
+          this.article = res.data
+          console.debug("aaaaaa", this.article)
+        }))
+    }
   }
 </script>

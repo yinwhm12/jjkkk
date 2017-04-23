@@ -25,6 +25,7 @@
           type="textarea"
           :rows="10"
           :autosize="true"
+          :readonly="true"
           placeholder="请输入内容"
           v-model="textarea">
         </el-input>

@@ -93,6 +93,12 @@
       </el-row>
 
     </div>
+    <el-dialog
+      title="阅读"
+      size="small"
+      v-model="isShowReadDialog">
+      <read-article :article_id="article_id" @close="onEditClose"></read-article>
+    </el-dialog>
   </div>
 </template>
 
@@ -100,14 +106,19 @@
   import PartTwo from '../part_two.vue'
   import ArticleTheme from '../article_theme.vue'
   import Util from '../../utiljs/utils'
+  import ReadArticle from '../read_article.vue'
 
   export default{
     components: {
       ArticleTheme,
       PartTwo,
+      ReadArticle
     },
     data: function () {
       return {
+
+        article_id: 0,
+        isShowReadDialog: false,
         ones: [],
         twos: [],
         tableData: [{
@@ -161,8 +172,15 @@
           })
       },
       open(row){
-        console.log("-------hello")
-        console.log("-------hellorow",row)
+//        console.log("-------hello")
+//        console.log("-------hellorow",row)
+        this.isShowReadDialog = true;
+        this.article_id = row.id
+//        this.$http.get()
+//        console.debug("from===",this.article_id)
+      },
+      onEditClose(needRefresh){
+        this.isShowReadDialog = false;
       }
     }
 
