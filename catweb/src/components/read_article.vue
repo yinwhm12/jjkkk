@@ -2,7 +2,9 @@
   <div>
 
   <el-row>
-    <el-col :span="14" :push="5" :pull="5"><div class="grid-content bg-purple-light body-height">
+    <!--<el-col :span="14" :push="5" :pull="5"><div class="grid-content bg-purple-light body-height">-->
+    <el-col :span="24">
+      <div class="grid-content bg-purple-light body-height">
       <!--主体-->
 
       <div>
@@ -113,6 +115,17 @@
     methods: {
       close(needRefresh = false){
         this.$emit('close', needRefresh)
+      },
+      getArticle(){//根据id 获取具体的文章
+        console.debug("id----", this.article_id)
+        this.$http.get('/article/getOne/' + this.article_id)
+          .then((res => {
+            this.article = res.data
+            console.debug("aaaaaa", this.article)
+          }))
+      },
+      getValue(){//获取文章 价值
+
       }
 
     },
@@ -122,12 +135,7 @@
 //      }
     },
     mounted: function () {
-      console.debug("id----", this.article_id)
-      this.$http.get('/article/getOne/' + this.article_id)
-        .then((res => {
-          this.article = res.data
-          console.debug("aaaaaa", this.article)
-        }))
+      this.getArticle();
     }
   }
 </script>
