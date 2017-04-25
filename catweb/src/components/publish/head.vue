@@ -10,13 +10,25 @@
           <el-menu-item index="1">社区中心</el-menu-item>
           <el-submenu index="2">
             <template slot="title">科目天地</template>
-            <el-menu-item index="2-1">语文</el-menu-item>
-            <el-menu-item index="2-2">数学</el-menu-item>
-            <el-menu-item index="2-3">英语</el-menu-item>
+            <el-menu-item index="2-1">
+              <router-link :to="{name: 'chinese', params:{root2:1}}">语文</router-link>
+            </el-menu-item>
+            <el-menu-item index="2-2">
+              <router-link :to="{name: 'math', params:{root2:2}}">数学</router-link>
+            </el-menu-item>
+            <el-menu-item index="2-3">
+              <router-link :to="{name: 'english', params:{root2:3}}">英语</router-link>
+            </el-menu-item>
           </el-submenu>
-          <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">文章</a></el-menu-item>
-          <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">帖子</a></el-menu-item>
-          <el-menu-item index="3"><a href="https://www.ele.me" target="_blank">课间操</a></el-menu-item>
+          <el-menu-item index="文章">
+            <router-link :to="{name: 'articles', params:{root1:1}}">文章</router-link>
+          </el-menu-item>
+          <el-menu-item index="帖子">
+            <router-link :to="{name: 'posts', params:{root1:2}}">帖子</router-link>
+          </el-menu-item>
+          <el-menu-item index="课间操">
+            <router-link :to="{name: 'outsides', params:{root1:3}}" replace>课间操</router-link>
+          </el-menu-item>
         </el-menu>
       </el-col>
       <el-col :lg="3" :sm="2" :md="2" :xs="1">
@@ -109,8 +121,15 @@
       onEditClose(needRefresh){
         this.isShowDialog = false;
       },
-      handleSelect(){
-
+      handleSelect(key, keypath){
+        console.debug("keeeeee", key)
+//        $.trim(key)
+        let ss = key.split("?")
+        console.debug("---------sss", ss[ss.length - 1])
+//        this.$router.push({path: '/home/article_list/',params: { root1: ss[ss.length-1]}})
+        console.debug("okkkk")
+//        console.debug("ssssss",ss)
+//        console.debug("keeeeeepp",keypath)
       },
       personMenu(command){
         if (command === "personal_data") {

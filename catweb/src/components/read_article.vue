@@ -33,7 +33,7 @@
         <el-col :span="8">
           <div class="second-head"><i class="el-icon-caret-right"></i>
             <!--作者-->
-            {{ article.user.email }}
+            <span v-if="article.user">{{ article.user.email }}</span>
 
           </div>
         </el-col>
@@ -65,14 +65,7 @@
 
     </div></el-col>
   </el-row>
-    <!--关闭操作-->
-    <el-row>
-      <el-col>
-        <p>
-          <el-button @click="close(false)">关闭</el-button>
-        </p>
-      </el-col>
-    </el-row>
+
   </div>
 </template>
 

@@ -9,6 +9,7 @@ import welcome from '../components/Welcome.vue'
 import Mian from '../components/publish/main.vue'
 import WriteView from '../components/write.vue'
 import ReadArticle from '../components/read_article.vue'
+import ArticleList from '../components/article_list.vue'
 
 import 'element-ui/lib/theme-default/index.css'
 
@@ -26,8 +27,8 @@ const About = {
 
 
 export  default  new Router({
-  // mode: 'hash',
-  // base: _dirname,
+  mode: 'hash',
+  base: __dirname,
   routes: [
     {
       path: '/home',
@@ -50,6 +51,37 @@ export  default  new Router({
           name: 'read_article',
           path: 'read_article',
           component: ReadArticle
+        }, {
+          name: 'articles',
+          path: 'article_list',
+          component: ArticleList
+        }, {
+          name: 'posts',
+          path: 'post_list',
+          component: ArticleList
+        }, {
+          name: 'outsides',
+          path: 'outsides_list',
+          component: ArticleList
+        }, {
+          name: 'subject',
+          path: 'subject',
+          component: Mian,
+          children: [
+            {
+              name: 'chinese',
+              path: 'chinese_list',
+              component: ArticleList
+            }, {
+              name: 'math',
+              path: 'math_list',
+              component: ArticleList
+            }, {
+              name: 'english',
+              path: 'english_list',
+              component: ArticleList
+            },
+          ]
         }
       ]
     }, {
