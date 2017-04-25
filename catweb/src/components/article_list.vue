@@ -108,6 +108,8 @@
 </style>
 
 <script>
+  import {mapState} from 'vuex'
+
   export default{
     data: function () {
       return {
@@ -128,12 +130,29 @@
     mounted: function () {
 
     },
+    computed: {
+      ...mapState({
+        typesInfo: ({userInfo}) => userInfo,
+      })
+    },
     watch: {
-//      '$route'(to,from){
-//          console.debug("fffff",from)
-//          console.debug("fffttttt",to)
-//          console.debug("---------------",this.$route.params.root1)
-//      },
+      '$route'(to, from){
+        console.debug("fffff", from)
+        console.debug("fffttttt", to)
+        console.debug("---------------", this.$route.params.root1)
+      },
+      'this.$route.path'(){
+        console.debug("rrrrrrrrrr")
+      },
+      typesInfo(){
+        console.debug("tttttt", this.typesInfo.types)
+      },
+      'typesInfo.types'(){
+        console.debug("000000000")
+      },
+      'this.typesInfo.types'(){
+        console.debug("ppppppp")
+      }
 
     },
     methods: {
@@ -154,6 +173,8 @@
         console.debug("=========", this.$route.params.root1)
         console.debug("=========", this.$route.params.root2)
         console.debug("=========", this.$route.path)
+        console.debug("=========tt", this.typesInfo.types)
+
 //        this.$route.path.trim()
         let ss = this.$route.path.split("/")
         console.debug("=======ssss", ss)

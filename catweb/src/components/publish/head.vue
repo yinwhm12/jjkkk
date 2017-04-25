@@ -20,13 +20,13 @@
               <router-link :to="{name: 'english', params:{root2:3}}">英语</router-link>
             </el-menu-item>
           </el-submenu>
-          <el-menu-item index="文章">
+          <el-menu-item index="root1=1">
             <router-link :to="{name: 'articles', params:{root1:1}}">文章</router-link>
           </el-menu-item>
-          <el-menu-item index="帖子">
+          <el-menu-item index="root1=2">
             <router-link :to="{name: 'posts', params:{root1:2}}">帖子</router-link>
           </el-menu-item>
-          <el-menu-item index="课间操">
+          <el-menu-item index="root1=3">
             <router-link :to="{name: 'outsides', params:{root1:3}}" replace>课间操</router-link>
           </el-menu-item>
         </el-menu>
@@ -124,12 +124,23 @@
       handleSelect(key, keypath){
         console.debug("keeeeee", key)
 //        $.trim(key)
-        let ss = key.split("?")
-        console.debug("---------sss", ss[ss.length - 1])
+//        let ss = key.split("?")
+//        console.debug("---------sss", ss[ss.length - 1])
 //        this.$router.push({path: '/home/article_list/',params: { root1: ss[ss.length-1]}})
-        console.debug("okkkk")
+//        console.debug("okkkk")
 //        console.debug("ssssss",ss)
 //        console.debug("keeeeeepp",keypath)
+        let ss = key.split("=")
+        this.$store.commit("setTypes", {name: ss[0], value: ss[1]})
+        console.debug("gggggg", this.mapUserInfo.types)
+        if (ss[1] === '1') {
+          this.$router.push({path: '/home/article_list', params: {root1: 1}})
+        } else if (ss[1] === '2') {
+          this.$router.push({path: '/home/post_list', params: {root1: 2}})
+        } else {
+          this.$router.push({path: '/home/post_list', params: {root1: 3}})
+        }
+
       },
       personMenu(command){
         if (command === "personal_data") {
