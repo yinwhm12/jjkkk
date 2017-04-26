@@ -10,13 +10,13 @@
           <el-menu-item index="1">社区中心</el-menu-item>
           <el-submenu index="2">
             <template slot="title">科目天地</template>
-            <el-menu-item index="2-1">
+            <el-menu-item index="root2=1">
               <router-link :to="{name: 'chinese', params:{root2:1}}">语文</router-link>
             </el-menu-item>
-            <el-menu-item index="2-2">
+            <el-menu-item index="root2=2">
               <router-link :to="{name: 'math', params:{root2:2}}">数学</router-link>
             </el-menu-item>
-            <el-menu-item index="2-3">
+            <el-menu-item index="root2=3">
               <router-link :to="{name: 'english', params:{root2:3}}">英语</router-link>
             </el-menu-item>
           </el-submenu>
@@ -123,23 +123,36 @@
       },
       handleSelect(key, keypath){
         console.debug("keeeeee", key)
-//        $.trim(key)
-//        let ss = key.split("?")
-//        console.debug("---------sss", ss[ss.length - 1])
-//        this.$router.push({path: '/home/article_list/',params: { root1: ss[ss.length-1]}})
-//        console.debug("okkkk")
-//        console.debug("ssssss",ss)
-//        console.debug("keeeeeepp",keypath)
-        let ss = key.split("=")
-        this.$store.commit("setTypes", {name: ss[0], value: ss[1]})
-        console.debug("gggggg", this.mapUserInfo.types)
-        if (ss[1] === '1') {
-          this.$router.push({path: '/home/article_list', params: {root1: 1}})
-        } else if (ss[1] === '2') {
-          this.$router.push({path: '/home/post_list', params: {root1: 2}})
-        } else {
-          this.$router.push({path: '/home/post_list', params: {root1: 3}})
-        }
+        console.debug("keeeeee", keypath)
+
+//        console.debug("-----111111",key.indexOf("root1"))
+//        let ss = key.split("=")
+//        if(key.indexOf("root1")===0){
+//          if (ss[1] === '1') {
+//            this.$router.push({path: '/home/article_list', params: {root1: 1}})
+//          } else if (ss[1] === '2') {
+//            this.$router.push({path: '/home/post_list', params: {root1: 2}})
+//          } else if (ss[1] === '3'){
+//            this.$router.push({path: '/home/outsides_list', params: {root1: 3}})
+//          }else{
+//              this.$router.push({path: '/not_found'})
+//          }
+//        }else if(key.indexOf("root2")===0){
+//          if (ss[1] === '1') {
+//            this.$router.push({path: '/home/subject/chinese_list', params: {root2: 1}})
+//          } else if (ss[1] === '2') {
+//            this.$router.push({path: '/home/subject/math_list', params: {root2: 2}})
+//          } else if (ss[1] === '3'){
+//            this.$router.push({path: '/home/subject/english_list', params: {root2: 3}})
+//          }else{
+//            this.$router.push({path: '/not_found'})
+//          }
+//        }else {
+//          this.$router.push({path: '/not_found'})
+//        }
+//        this.$store.commit("setTypes", {name: ss[0], value: ss[1]})
+//        console.debug("gggggg", this.mapUserInfo.types)
+
 
       },
       personMenu(command){

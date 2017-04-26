@@ -13,10 +13,19 @@ const state = {
   // name: '',
   email: '',
   article_type: 0,
-  types: {
+  types: {//暂时 无用
     name: '',
     value: 0,
-  }
+  },
+  article_url: {
+    '/home/article_list': 'root1=1',
+    '/home/post_list': 'root1=2',
+    '/home/outsides_list': 'root1?3',
+    '/home/subject/chinese_list': 'root2=1',
+    '/home/subject/math_list': 'root2=2',
+    '/home/subject/english_list': 'root2=3',
+  },
+  url_value: ''
 }
 
 const mutations = {
@@ -37,16 +46,27 @@ const mutations = {
       state.accessToken = ''
   },
   setArticleType(state, data){
-    console.debug("------", data)
+    // console.debug("------", data)
     state.article_type = data
   },
-  setTypes(state, data){
+  setTypes(state, data){//暂时无用
     state.types.name = data.name
     state.types.value = data.value
+  },
+  setUrl(state, data){
+    console.debug("-------", data)
+    state.url_value = state.article_url[data]
+  }
+}
+
+const getters = {
+  getUrlValue: state => {
+    return state.url_value
   }
 }
 
 export default {
   state,
-  mutations
+  mutations,
+  getters
 }

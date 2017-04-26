@@ -5,12 +5,12 @@
       <el-col :span="14" :push="5" :pull="5">
         <div class="grid-content bg-purple-light body-height">
           <!--标题-->
-          <template>
+          <template v-for="item in articles">
             <el-row>
               <el-col :push="3">
                 <div class="page-head">
-                  主体
-
+                  <!--主体-->
+                  {{ item.title }}
                 </div>
               </el-col>
             </el-row>
@@ -18,12 +18,13 @@
             <el-row>
               <el-col>
                 <el-input
-                  type="textarea"
-                  :row="5"
-                  autosize
+                  type="text"
+                  :row="3"
+                  size="small"
+                  :maxlenght="150"
                   :readonly="true"
                   placeholder="请输入内容"
-                  v-model="textarea">
+                  v-model="item.text_content">
                 </el-input>
               </el-col>
             </el-row>
@@ -32,14 +33,15 @@
               <el-col :span="8">
                 <div class="second-head">
                   <i class="el-icon-date"></i>
-                  时间
-
+                  <!--时间-->
+                  {{ item.created_time | time}}
                 </div>
               </el-col>
 
               <el-col :span="8">
                 <div class="second-head"><i class="el-icon-caret-right"></i>
-                  作者
+                  <!--作者-->
+                  <span v-if="item.user">{{ item.user.email }}</span>
                 </div>
               </el-col>
 
@@ -60,12 +62,11 @@
           <div class="block" style="text-align: center">
             <!--<span class="demonstration">显示总数</span>-->
             <el-pagination
-              @size-change="handleSizeChange"
               @current-change="handleCurrentChange"
-              :current-page="currentPage1"
-              :page-size="100"
+              :current-page="pageInfo.currentPage"
+              :page-size="pageInfo.limit"
               layout="total, prev, pager, next"
-              :total="1000">
+              :total="pageInfo.total">
             </el-pagination>
           </div>
         </div>
@@ -76,7 +77,7 @@
 </template>
 <style scoped>
   .body-height {
-    height: 1000px;
+    height: 600px;
     max-height: 1200px;
   }
 
@@ -108,7 +109,8 @@
 </style>
 
 <script>
-  import {mapState} from 'vuex'
+  import {mapState, mapGetters} from 'vuex'
+  import util from '../utiljs/utils'
 
   export default{
     data: function () {
@@ -124,7 +126,7 @@
           offset: 0,
           total: 0,
         },
-        url: '/article/getAll/'
+        articles: {}
       }
     },
     mounted: function () {
@@ -133,70 +135,54 @@
     computed: {
       ...mapState({
         typesInfo: ({userInfo}) => userInfo,
-      })
+      }),
+      ...mapGetters({
+          url_value: 'getUrlValue'
+        }
+      )
     },
     watch: {
-      '$route'(to, from){
+      '$route'(to, from){//同级之间 会进入(有监控) 路由变化
         console.debug("fffff", from)
         console.debug("fffttttt", to)
         console.debug("---------------", this.$route.params.root1)
+        this.$store.commit("setUrl", to.path)
+        this.getAllInfo(0)
       },
-      'this.$route.path'(){
-        console.debug("rrrrrrrrrr")
-      },
-      typesInfo(){
-        console.debug("tttttt", this.typesInfo.types)
-      },
-      'typesInfo.types'(){
-        console.debug("000000000")
-      },
-      'this.typesInfo.types'(){
-        console.debug("ppppppp")
-      }
 
     },
     methods: {
-      handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
-      },
-      handleCurrentChange(val) {
-        this.currentPage = val;
-        console.log(`当前页: ${val}`);
+
+      handleCurrentChange(currentPage) {
+        let offset = util.buildOffsetByPage(currentPage, this.pageInfo.limit)
+        this.pageInfo.offset = offset
+        this.getAllInfo(currentPage)
       },
       getAllInfo(page = 0){
         if (page === 0) {
           this.pageInfo.offset = 0
         }
-        let url = '/article/getAll/?root1='
+        let url = '/article/getAll/?' + this.url_value + '&limit='
+          + this.pageInfo.limit + '&offset=' + this.pageInfo.offset
+        this.$http.get(url)
+          .then((res => {
+            this.articles = res.body.data
+            this.pageInfo.total = res.body.total
+          }))
       },
-      load(){
-        console.debug("=========", this.$route.params.root1)
-        console.debug("=========", this.$route.params.root2)
-        console.debug("=========", this.$route.path)
-        console.debug("=========tt", this.typesInfo.types)
+      load(){//不同级之间 会重新加载(路由)
+
+        console.debug("------------------------")
+
+        this.$store.commit("setUrl", this.$route.path)
+
+        console.debug("--out------", this.url_value)
 
 //        this.$route.path.trim()
-        let ss = this.$route.path.split("/")
-        console.debug("=======ssss", ss)
-        let len = ss.length
-        if (len === 3) {//文章三大类
-          if (ss[1] === 'home') {
-            if (ss[2] === 1) {
-            }
-          }
-        } else if (len === 4) {//语文 数学 英语
-
-        } else {
-          this.$route.push({path: '/not_found'})
-        }
-        if (this.$route.params.root1) {
-          console.debug("nonoonoo")
-          this.url += this.$route.params.root1
-          console.debug("nonoonood", this.url)
-        }
-      }
+        this.getAllInfo(0)
+      },
     },
-    mounted: function () {
+    mounted: function () {//不同级之间 会重新加载(路由)
       this.load();
     }
   }
