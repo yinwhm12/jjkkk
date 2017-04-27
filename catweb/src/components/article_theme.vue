@@ -12,7 +12,7 @@
                     <el-col>
                       <div class="title-css content">
                         <!--主题-->
-                        {{item.title}}
+                        <el-button type="text" size="large" :plain="true">{{item.title}}</el-button>
                       </div>
                     </el-col>
                   </el-row>
@@ -27,7 +27,7 @@
                   <el-row :gutter="20">
                     <el-col :span="6">
                       <!--作者-->
-                      {{ item.user.email }}
+                      <el-button type="info" size="mini">{{ item.user.email }}</el-button>
 
                     </el-col>
                     <el-col :span="6">
@@ -35,16 +35,23 @@
                       <!--{{ new Date(item.created_time).toLocaleString()}}-->
                       {{ item.created_time | time}}
                     </el-col>
-                    <el-col :span="4">
-                      赞
+                    <el-col :span="3">
+                      <el-button type="primary" size="mini" @click="read(item)"><i class="el-icon-caret-right">阅读:<span
+                        v-if="item.value_article">{{ item.value_article.read_count}}</span></i></el-button>
 
                     </el-col>
-                    <el-col :span="4">
-                      收藏
+                    <el-col :span="3">
+                      <el-button type="primary" size="mini"><i class="el-icon-circle-check">赞:<span
+                        v-if="item.value_article">{{ item.value_article.up_vout}}</span></i></el-button>
 
                     </el-col>
-                    <el-col :span="4">
-                      评论
+                    <el-col :span="3">
+                      <el-button type="primary" size="mini"><i class="el-icon-star-on">收藏:<span
+                        v-if="item.value_article">{{ item.value_article.collected_count}}</span></i></el-button>
+
+                    </el-col>
+                    <el-col :span="3">
+                      <el-button type="primary" icon="edit" size="mini">评论:</el-button>
 
                     </el-col>
                   </el-row>
@@ -59,8 +66,11 @@
             </el-col>
           </el-row>
         </div>
+
       </el-col>
     </el-row>
+
+
   </div>
 </template>
 
@@ -84,14 +94,28 @@
     height: 20px !important;
     min-height: 20px !important;
   }
+
+  .el-button.el-button--text.el-button--large.is-plain {
+    height: 60px;
+    font-size: 38px;
+    text-align: center;
+    color: #8492A6;
+  }
 </style>
 
-<script>
+<script type="text/ecmascript-6">
+  import ReadTheme from '../components/read_theme.vue'
 
   export default{
+    components: {
+      ReadTheme
+    },
     data: function () {
       return {
-        articles: []
+        articles: [],
+        article_id: 0,
+        isShowThemeDialog: false,
+        theme: {},//文章Id
       }
     },
     mounted: function () {
@@ -101,11 +125,23 @@
       getThemeArticle(){
         let url = '/article/getThemes/1?flag=index'
         this.$http.get(url).then((res => {
-          this.articles = res.data
-          console.log("kkkkkkkkkk", this.articles)
-          console.log("kkkkkkkkkk", this.articles[0].user)
+          this.articles = res.data;
         }))
-
+      },
+      read(item){
+        if (item.tid > 0) {
+//          this.open(item.tid);
+          this.theme = item;
+          this.openDialog(this.theme)
+        }
+      },
+      open(id){
+        this.isShowThemeDialog = true;
+        this.article_id = id;
+      },
+      openDialog(needOpenThemeId){
+//        needOpenThemeId = this.themeId
+        this.$emit('themeDialog', needOpenThemeId)
       }
     }
   }

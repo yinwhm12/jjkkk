@@ -86,7 +86,7 @@
             <part-two></part-two>
 
             <!--内容3-->
-            <article-theme></article-theme>
+            <article-theme @themeDialog="OnEditThemeDialog"></article-theme>
 
           </div>
         </el-col>
@@ -144,7 +144,7 @@
               var newDate = new Date()
               for (let i in ss) {
                 var option = {}
-                option.id = ss[i].tid
+                option.tid = ss[i].tid
                 option.title = ss[i].title
                 newDate.setTime(ss[i].created_time * 1000)
                 option.created_time = newDate.toLocaleString()
@@ -162,7 +162,7 @@
               var newDate = new Date()
               for (let i in ss) {
                 var option = {}
-                option.id = ss[i].tid
+                option.tid = ss[i].tid
                 option.title = ss[i].title
                 newDate.setTime(ss[i].created_time * 1000)
                 option.created_time = newDate.toLocaleString()
@@ -173,14 +173,18 @@
       },
       open(row){
 //        console.log("-------hello")
-//        console.log("-------hellorow",row)
+        console.log("-------hellorow", row)
         this.isShowReadDialog = true;
-        this.article_id = row.id
+        this.article_id = row.tid
 //        this.$http.get()
 //        console.debug("from===",this.article_id)
       },
-      onEditClose(needRefresh){
+      onEditClose(needRefresh){//来自read_article界面
         this.isShowReadDialog = false;
+      },
+      OnEditThemeDialog(item){//来自theme界面
+        this.open(item)
+
       }
     }
 

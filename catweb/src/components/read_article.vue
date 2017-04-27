@@ -26,24 +26,29 @@
           <div class="second-head"><i class="el-icon-date"></i>
             <!--时间-->
             {{article.created_time | time }}
-
           </div>
         </el-col>
 
         <el-col :span="8">
-          <div class="second-head"><i class="el-icon-caret-right"></i>
+          <div class="second-head">
             <!--作者-->
-            <span v-if="article.user">{{ article.user.email }}</span>
-
+            <!--<span v-if="article.user">{{ article.user.email }}</span>-->
+            <el-button type="info" size="mini"><span v-if="article.user">{{ article.user.email }}</span></el-button>
           </div>
         </el-col>
 
         <el-col :span="5">
-          <div class="second-head"><i class="el-icon-document"></i>阅读次数</div>
+          <div class="second-head"><i class="el-icon-document"></i>阅读:
+          <span v-if="article.value_article">{{ article.value_article.read_count}}</span></div>
         </el-col>
 
         <el-col :span="3">
-          <div class="second-head"><i class="el-icon-check"></i>赞</div>
+          <div class="second-head">
+            <el-button type="primary" size="mini">
+              <i class="el-icon-circle-check">赞:<span
+                v-if="article.value_article">{{ article.value_article.up_vout}}</span>
+              </i></el-button>
+          </div>
         </el-col>
       </el-row>
       <!--内容-->
@@ -107,6 +112,7 @@
     },
     methods: {
       close(needRefresh = false){
+//          console.debug()
         this.$emit('close', needRefresh)
       },
       getArticle(){//根据id 获取具体的文章
@@ -123,9 +129,10 @@
 
     },
     watch: {
-//      article_id(){
-//          console.debug("-------id",this.article_id)
-//      }
+      article_id(){
+        console.debug("-------dddid", this.article_id)
+        this.getArticle()
+      }
     },
     mounted: function () {
       this.getArticle();

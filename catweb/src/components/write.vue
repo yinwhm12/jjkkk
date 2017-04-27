@@ -177,10 +177,10 @@
           })
           .catch((err) => {
             console.debug("--------")
-            this.$message({
-              type: 'warning',
-              message: '请登录操作!'
-            })
+//            this.$message({
+//              type: 'warning',
+//              message: '请登录操作!'
+//            })
           })
         if (data === 'fail') {
           console.debug("--------====")
