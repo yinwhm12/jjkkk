@@ -23,13 +23,14 @@
         <!--发布时间 作者  阅读次数 赞-->
       <el-row>
         <el-col :span="8">
-          <div class="second-head"><i class="el-icon-date"></i>
+          <div class="second-head">
             <!--时间-->
-            {{article.created_time | time }}
+            <!--{{article.created_time | time }}-->
+            <el-button type="text" size="mini"><i class="el-icon-date">{{article.created_time | time }}</i></el-button>
           </div>
         </el-col>
 
-        <el-col :span="8">
+        <el-col :span="7">
           <div class="second-head">
             <!--作者-->
             <!--<span v-if="article.user">{{ article.user.email }}</span>-->
@@ -37,19 +38,30 @@
           </div>
         </el-col>
 
-        <el-col :span="5">
-          <div class="second-head"><i class="el-icon-document"></i>阅读:
+        <el-col :span="3">
+          <div class="second-head"><i class="el-icon-caret-right">阅读:</i>
           <span v-if="article.value_article">{{ article.value_article.read_count}}</span></div>
         </el-col>
 
         <el-col :span="3">
           <div class="second-head">
-            <el-button type="primary" size="mini">
+            <el-button type="primary" size="mini" @click="parseButton(item)">
               <i class="el-icon-circle-check">赞:<span
                 v-if="article.value_article">{{ article.value_article.up_vout}}</span>
               </i></el-button>
           </div>
         </el-col>
+        <!--收藏-->
+        <el-col :span="3">
+          <div class="second-head">
+            <el-button type="primary" size="mini" @click="collectButton(item)">
+              <i class="el-icon-star-on">收藏:<span
+                v-if="article.value_article">{{ article.value_article.collected_count}}</span>
+              </i></el-button>
+          </div>
+        </el-col>
+
+
       </el-row>
       <!--内容-->
       <el-row>
@@ -60,7 +72,7 @@
             :autosize="true"
             :readonly="true"
             placeholder="请输入内容"
-            v-model="textarea">
+            v-model="article.text_content">
           </el-input>
         </el-col>
       </el-row>
@@ -124,6 +136,13 @@
           }))
       },
       getValue(){//获取文章 价值
+
+      },
+      parseButton(item){//点赞事件
+
+      },
+      //收藏事件
+      collectButton(item){
 
       }
 

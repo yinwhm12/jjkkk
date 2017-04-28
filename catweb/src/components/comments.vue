@@ -7,13 +7,14 @@
       <el-col :span="5">
         <el-row>
           <el-col><div class="sayer">
-            <i class="el-icon-caret-right"></i>作者
+            <!--<i class="el-icon-caret-right"></i>作者-->
+            <el-button type="info" size="mini">作者</el-button>
             </div>
           </el-col>
         </el-row>
         <el-row>
           <el-col><div class="sayer">
-            <i class="el-icon-date"></i>时间
+            <el-button type="text" size="mini"><i class="el-icon-date">时间</i></el-button>
             </div>
           </el-col>
         </el-row>
@@ -33,6 +34,25 @@
       </el-col>
     </el-row>
     </template>
+    <!--写入地区-->
+    <div style="margin: 20px 0;"></div>
+    <el-row>
+      <el-col>
+        <el-input
+          type="textarea"
+          :autosize="{ minRows: 2, maxRows: 4}"
+          placeholder="请输入评论内容"
+          v-model="textarea3">
+        </el-input>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col>
+        <div class="ok-button">
+          <el-button type="info">发表评论</el-button>
+        </div>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -46,13 +66,19 @@
   .say-content-height{
     height: 100px;
   }
+
+.ok-button {
+  margin-top: -26px;
+  text-align: left;
+}
 </style>
 
 <script>
   export default{
       data (){
           return{
-            textarea: ''
+            textarea: '',
+            textarea3: ''
           }
       }
   }

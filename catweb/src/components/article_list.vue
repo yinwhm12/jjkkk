@@ -32,28 +32,36 @@
             <el-row>
               <el-col :span="8">
                 <div class="second-head">
-                  <i class="el-icon-date"></i>
+                  <!--<i class="el-icon-date"></i>-->
                   <!--时间-->
-                  {{ item.created_time | time}}
+                  <el-button type="text" size="mini"><i class="el-icon-date">{{item.created_time | time }}</i>
+                  </el-button>
+                  <!--{{ item.created_time | time}}-->
                 </div>
               </el-col>
 
               <el-col :span="8">
-                <div class="second-head"><i class="el-icon-caret-right"></i>
+                <div class="second-head">
                   <!--作者-->
-                  <span v-if="item.user">{{ item.user.email }}</span>
+                  <el-button type="info" size="mini"><i class="el-icon-caret-right"><span
+                    v-if="item.user">{{ item.user.email }}</span></i></el-button>
+
                 </div>
               </el-col>
 
               <el-col :span="5">
-                <div class="second-head"><i class="el-icon-document"></i>
-                  阅读次数
+                <div class="second-head">
+                  <el-button type="text" size="mini" @click="read(item)"><i class="el-icon-caret-right">阅读:<span
+                    v-if="item.value_article">{{ item.value_article.read_count}}</span></i></el-button>
+
                 </div>
               </el-col>
 
               <el-col :span="3">
-                <div class="second-head"><i class="el-icon-check"></i>
-                  赞
+                <div class="second-head">
+                  <el-button type="text" size="mini"><i class="el-icon-circle-check">赞:<span
+                    v-if="item.value_article">{{ item.value_article.up_vout}}</span></i></el-button>
+
                 </div>
               </el-col>
             </el-row>
@@ -72,6 +80,13 @@
         </div>
       </el-col>
     </el-row>
+
+    <el-dialog
+      title="阅读"
+      size="small"
+      v-model="isShowReadDialog">
+      <read-article :article_id="article_id" @close="onEditClose"></read-article>
+    </el-dialog>
 
   </div>
 </template>
@@ -108,11 +123,15 @@
   }
 </style>
 
-<script>
+<script type="text/ecmascript-6">
   import {mapState, mapGetters} from 'vuex'
   import util from '../utiljs/utils'
+  import ReadArticle from './read_article.vue'
 
   export default{
+    components: {
+      ReadArticle
+    },
     data: function () {
       return {
         textarea: '',
@@ -126,7 +145,9 @@
           offset: 0,
           total: 0,
         },
-        articles: {}
+        articles: {},
+        isShowReadDialog: false,
+        article_id: 0,
       }
     },
     mounted: function () {
@@ -143,8 +164,6 @@
     },
     watch: {
       '$route'(to, from){//同级之间 会进入(有监控) 路由变化
-        console.debug("fffff", from)
-        console.debug("fffttttt", to)
         console.debug("---------------", this.$route.params.root1)
         this.$store.commit("setUrl", to.path)
         this.getAllInfo(0)
@@ -152,7 +171,9 @@
 
     },
     methods: {
-
+      onEditClose(needRefresh){
+        this.isShowReadDialog = false;
+      },
       handleCurrentChange(currentPage) {
         let offset = util.buildOffsetByPage(currentPage, this.pageInfo.limit)
         this.pageInfo.offset = offset
@@ -171,16 +192,13 @@
           }))
       },
       load(){//不同级之间 会重新加载(路由)
-
-        console.debug("------------------------")
-
         this.$store.commit("setUrl", this.$route.path)
-
-        console.debug("--out------", this.url_value)
-
-//        this.$route.path.trim()
         this.getAllInfo(0)
       },
+      read(item){
+        this.article_id = item.tid;
+        this.isShowReadDialog = true;
+      }
     },
     mounted: function () {//不同级之间 会重新加载(路由)
       this.load();
