@@ -125,7 +125,8 @@
           title: '2016-05-02',
           date: '2016-05-02'
         }
-        ]
+        ],
+        needRefreshThemePart: false //标记article_theme 被点击 关闭时，阅读数量增1 需更新数据
       }
     },
     mounted: function () {
@@ -181,9 +182,15 @@
       },
       onEditClose(needRefresh){//来自read_article界面
         this.isShowReadDialog = false;
+        if (this.needRefreshThemePart) {
+          this.$store.commit("setRefreshByRead", true)//重置 article-theme
+        }
+
       },
-      OnEditThemeDialog(item){//来自theme界面
-        this.open(item)
+      OnEditThemeDialog(item, flagRefresh){//来自theme界面 flagRefresh为 article-theme 重置信号
+//        console.debug("-----------on",flagRefresh)
+        this.needRefreshThemePart = flagRefresh;
+        this.open(item);
 
       }
     }

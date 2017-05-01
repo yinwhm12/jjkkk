@@ -42,14 +42,14 @@
           type="textarea"
           :autosize="{ minRows: 2, maxRows: 4}"
           placeholder="请输入评论内容"
-          v-model="textarea3">
+          v-model="respondOne.text_content">
         </el-input>
       </el-col>
     </el-row>
     <el-row>
       <el-col>
         <div class="ok-button">
-          <el-button type="info">发表评论</el-button>
+          <el-button type="info" @click="postRespondOne">发表评论</el-button>
         </div>
       </el-col>
     </el-row>
@@ -75,11 +75,50 @@
 
 <script>
   export default{
+    props: ["article_id"],
       data (){
           return{
             textarea: '',
-            textarea3: ''
+            respondOne: {//写的数据
+              text_content: '',
+              article_id: 0,
+            }
           }
-      }
+      },
+    methods: {
+      //提交 respondOne
+      postRespondOne(){
+        if (this.respondOne.text_content === '') {
+          this.$message({
+            type: 'warning',
+            message: '评论内容不能为空!'
+          })
+          return
+        }
+        this.respondOne.article_id = this.article_id
+        var data = JSON.stringify(this.respondOne)
+        this.$http.post('/comment/', data)
+          .then((res => {
+            let message = res.data
+            this.$message({
+              type: 'success',
+              message: message
+            })
+          }))
+//            .catch((err =>{
+//                this.$message({
+//
+//                })
+//            }))
+
+      },
+      getAllRespond(){//获取评论
+
+      },
+
+    },
+    mounted: function () {
+      console.debug("--------", this.article_id)
+    }
   }
 </script>

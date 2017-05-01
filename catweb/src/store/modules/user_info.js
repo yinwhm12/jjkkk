@@ -10,7 +10,7 @@ const state = {
   //保存第一页数据 用户数据
   id: '',
   accessToken: '',
-  // name: '',
+  name: '',
   email: '',
   article_type: 0,
   types: {//暂时 无用
@@ -25,16 +25,17 @@ const state = {
     '/home/subject/math_list': 'root2=2',
     '/home/subject/english_list': 'root2=3',
   },
-  url_value: ''
+  url_value: '',
+  needRefreshByClickRead: false
 }
 
 const mutations = {
   //设置token登录名 头像
   [SET_BASEINFO] (state, data) {
     try {
-      state.id = data.id
-      state.accessToken = data.accessToken
-      // state.name = data.name
+      state.id = data.uid
+      state.accessToken = data.token
+      state.name = data.name
       state.email = data.email
     } catch (err) {
       console.log(err)
@@ -56,12 +57,18 @@ const mutations = {
   setUrl(state, data){
     console.debug("-------", data)
     state.url_value = state.article_url[data]
+  },
+  setRefreshByRead(state, data){
+    state.needRefreshByClickRead = data
   }
 }
 
 const getters = {
   getUrlValue: state => {
     return state.url_value
+  },
+  getRefreshState: state => {
+    return state.needRefreshByClickRead
   }
 }
 

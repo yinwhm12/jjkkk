@@ -75,7 +75,7 @@
             var data = JSON.stringify(this.user)
             this.$http.post(url, data)
               .then((res) => {
-                console.debug("-----tttt----", res.data)
+//                console.debug("-----tttt----", res.data)
                 sessionStorage.setItem('token', res.data.token)
                 this.$store.commit('SET_BASEINFO', res.data)
                 this.$router.push({path: '/home/welcome'})

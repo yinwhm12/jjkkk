@@ -150,9 +150,6 @@
         article_id: 0,
       }
     },
-    mounted: function () {
-
-    },
     computed: {
       ...mapState({
         typesInfo: ({userInfo}) => userInfo,

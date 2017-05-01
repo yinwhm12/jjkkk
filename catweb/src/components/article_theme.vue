@@ -12,7 +12,7 @@
                     <el-col>
                       <div class="title-css content">
                         <!--主题-->
-                        <el-button type="text" size="large" :plain="true">{{item.title}}</el-button>
+                        <el-button type="text" size="large" :plain="true" @click="read(item)">{{item.title}}</el-button>
                       </div>
                     </el-col>
                   </el-row>
@@ -33,25 +33,28 @@
                     <el-col :span="6">
                       <!--时间-->
                       <!--{{ new Date(item.created_time).toLocaleString()}}-->
-                      {{ item.created_time | time}}
+                      <el-button type="text" size="mini"><i class="el-icon-date"
+                                                            style="color: #475669;">{{item.created_time | time }}</i>
+                      </el-button>
                     </el-col>
                     <el-col :span="3">
-                      <el-button type="primary" size="mini" @click="read(item)"><i class="el-icon-caret-right">阅读:<span
+                      <el-button type="text" size="mini" @click="read(item)"><i class="el-icon-caret-right"
+                                                                                style="color: #475669;">阅读:<span
                         v-if="item.value_article">{{ item.value_article.read_count}}</span></i></el-button>
 
                     </el-col>
                     <el-col :span="3">
-                      <el-button type="primary" size="mini"><i class="el-icon-circle-check">赞:<span
+                      <el-button type="text" size="mini"><i class="el-icon-circle-check" style="color: #475669;">赞:<span
                         v-if="item.value_article">{{ item.value_article.up_vout}}</span></i></el-button>
 
                     </el-col>
                     <el-col :span="3">
-                      <el-button type="primary" size="mini"><i class="el-icon-star-on">收藏:<span
+                      <el-button type="text" size="mini"><i class="el-icon-star-on" style="color: #475669;">收藏:<span
                         v-if="item.value_article">{{ item.value_article.collected_count}}</span></i></el-button>
 
                     </el-col>
                     <el-col :span="3">
-                      <el-button type="primary" icon="edit" size="mini">评论:</el-button>
+                      <el-button type="text" icon="edit" size="mini" style="color: #475669;">评论:</el-button>
 
                     </el-col>
                   </el-row>
@@ -104,11 +107,21 @@
 </style>
 
 <script type="text/ecmascript-6">
-  import ReadTheme from '../components/read_theme.vue'
+  //  import ReadTheme from '../components/read_theme.vue'
+  import {mapState, mapGetters} from 'vuex'
 
   export default{
+    props: ["needRefreshThemePart"],
     components: {
-      ReadTheme
+//      ReadTheme
+    },
+    computed: {
+      ...mapState({
+        needRefreshInfo: ({userInfo}) => userInfo,
+      }),
+      ...mapGetters({
+        getNeedRefresh: 'getRefreshState'
+      })
     },
     data: function () {
       return {
@@ -139,9 +152,18 @@
         this.isShowThemeDialog = true;
         this.article_id = id;
       },
-      openDialog(needOpenThemeId){
+      openDialog(needOpenTheme, needReresh = true){
 //        needOpenThemeId = this.themeId
-        this.$emit('themeDialog', needOpenThemeId)
+        this.$emit('themeDialog', needOpenTheme, needReresh)
+//        this.store.commit("setRefreshByRead",true)
+      }
+    },
+    watch: {
+      getNeedRefresh(){
+        if (this.getNeedRefresh === true) {
+          this.getThemeArticle();
+          this.$store.commit("setRefreshByRead", false);
+        }
       }
     }
   }
