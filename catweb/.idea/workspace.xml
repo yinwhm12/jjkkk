@@ -8,7 +8,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f79c3245-bf67-48b9-bf94-44afbd9555cb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/comments.vue" afterPath="$PROJECT_DIR$/src/components/comments.vue" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -50,7 +49,7 @@
           <file leaf-file-name="comments.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/comments.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="985">
+                <state relative-caret-position="520">
                   <caret line="207" column="53" lean-forward="false" selection-start-line="207" selection-start-column="53" selection-end-line="207" selection-end-column="53" />
                   <folding>
                     <element signature="n#style#0;n#i#0;n#el-button#0;n#div#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#template#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -306,7 +305,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -465,7 +464,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -623,7 +622,8 @@
       <workItem from="1493343281250" duration="9978000" />
       <workItem from="1493522493850" duration="12536000" />
       <workItem from="1493607810281" duration="13487000" />
-      <workItem from="1493718330930" duration="1047000" />
+      <workItem from="1493718330930" duration="1434000" />
+      <workItem from="1493721111521" duration="10000" />
     </task>
     <task id="LOCAL-00001" summary="new">
       <created>1490872660491</created>
@@ -755,17 +755,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="373486000" />
+    <option name="totallyTimeSpent" value="373883000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12697576" sideWeight="0.4916067" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1264489" sideWeight="0.4916067" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22866344" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13541667" sideWeight="0.5083933" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13541667" sideWeight="0.5083933" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.096726194" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30552545" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -1193,7 +1193,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/comments.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="985">
+        <state relative-caret-position="520">
           <caret line="207" column="53" lean-forward="false" selection-start-line="207" selection-start-column="53" selection-end-line="207" selection-end-column="53" />
           <folding>
             <element signature="n#style#0;n#i#0;n#el-button#0;n#div#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#template#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
