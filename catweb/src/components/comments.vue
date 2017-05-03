@@ -47,7 +47,8 @@
         </el-row>
 
       <!--二级区-->
-      <template>
+      <span v-if="respond.respond_twos">
+      <template v-for="respondTwo in respond.respond_twos">
           <el-row :gutter="10" justify="center" align="middle" type="flex">
             <el-col :span="13" >
               <el-input
@@ -56,7 +57,7 @@
                 :autosize="true"
                 :readonly="true"
                 placeholder="请输入内容"
-                v-model="respond.text_content">
+                v-model="respondTwo.text_content">
                 </el-input>
             </el-col>
             <el-col :span="7">
@@ -65,7 +66,7 @@
                     <!--<i class="el-icon-caret-right"></i>作者-->
                     <el-button type="success" size="mini">
                       <!--作者-->
-                      <i style="color: #475669;"> <span v-if="respond.user"> {{respond.user.email}}</span></i>:顶你
+                      <i style="color: #475669;"> <span v-if="respondTwo.user"> {{respondTwo.user.email}}</span></i>:顶你
                     </el-button>
                     </div>
                   </el-col>
@@ -74,7 +75,7 @@
                   <el-col><div class="sayer">
                     <el-button type="text" size="mini"><i class="el-icon-date" style="color: #475669;">
                       <!--时间-->
-                      <span>{{ respond.created_time | time}}</span>
+                      <span>{{ respondTwo.created_time | time}}</span>
                     </i></el-button>
                     </div>
                   </el-col>
@@ -82,6 +83,7 @@
               </el-col>
           </el-row>
         </template>
+        </span>
       <!--顶人区 写-->
       <div style="margin: 20px 0;"></div>
         <el-row justify="center" align="middle" type="flex">
