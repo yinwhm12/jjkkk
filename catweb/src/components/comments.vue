@@ -173,7 +173,7 @@
       },
     methods: {
       //提交 respondOne
-      postRespondOne(){
+      postRespondOne(){//一级评论
         if (this.respondOne.text_content === '') {
           this.$message({
             type: 'warning',
@@ -183,13 +183,14 @@
         }
         this.respondOne.article_id = this.article_id
         var data = JSON.stringify(this.respondOne)
-        this.$http.post('/comment/', data)
+        this.$http.post('/comment_area/', data)
           .then((res => {
             let message = res.data
             this.$message({
               type: 'success',
               message: message
-            })
+            }),
+              this.getAllRespond();
           }))
 //            .catch((err =>{
 //                this.$message({
@@ -207,13 +208,10 @@
                 return
               }
               this.respondAll =  res.data
-            console.debug("------all",this.respondAll)
               this.noRespond = 'has'
           }))
       },
       respondTwoButton(respond){
-        console.debug("-----------res",respond.respondTwoContent)
-        console.debug("-----------res",respond.respond_one_id)
         if(respond.respondTwoContent === '' || respond.respond_one_id === 0){
             this.$message({
               type:'warning',
@@ -237,6 +235,9 @@
             this.respondTwo.text_content = ''
             this.respondTwo.respond_one = ''
 
+            //重新加载
+            this.getAllRespond()
+
           }))
       }
 
@@ -244,7 +245,6 @@
     watch: {
       article_id(){
         this.noRespond = 'no_respond';
-        console.debug("----------",this.noRespond)
         this.getAllRespond();
       },
     },

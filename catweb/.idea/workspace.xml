@@ -9,6 +9,7 @@
     <list default="true" id="f79c3245-bf67-48b9-bf94-44afbd9555cb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/comments.vue" afterPath="$PROJECT_DIR$/src/components/comments.vue" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/read_article.vue" afterPath="$PROJECT_DIR$/src/components/read_article.vue" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,14 +23,14 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.65681547">
+    <splitter split-orientation="horizontal" split-proportion="0.6145959">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="read_article.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/read_article.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4920">
-                  <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+                <state relative-caret-position="3030">
+                  <caret line="101" column="14" lean-forward="false" selection-start-line="101" selection-start-column="14" selection-end-line="101" selection-end-column="14" />
                   <folding />
                 </state>
               </provider>
@@ -50,8 +51,8 @@
           <file leaf-file-name="comments.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/comments.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="330">
-                  <caret line="124" column="8" lean-forward="false" selection-start-line="124" selection-start-column="8" selection-end-line="124" selection-end-column="8" />
+                <state relative-caret-position="270">
+                  <caret line="218" column="14" lean-forward="true" selection-start-line="218" selection-start-column="14" selection-end-line="218" selection-end-column="14" />
                   <folding>
                     <element signature="n#style#0;n#i#0;n#el-button#0;n#div#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#template#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#i#0;n#el-button#0;n#div#0;n#el-col#0;n#el-row#0;n#el-col#1;n#el-row#0;n#template#0;n#span#0;n#template#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -59,7 +60,6 @@
                     <element signature="n#style#0;n#div#0;n#template#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#1;n#template#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#!!top" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -143,10 +143,10 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="article_theme.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="article_theme.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/components/article_theme.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="30">
+                <state relative-caret-position="1380">
                   <caret line="46" column="112" lean-forward="false" selection-start-line="46" selection-start-column="89" selection-end-line="46" selection-end-column="112" />
                   <folding>
                     <element signature="n#style#0;n#span#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -169,11 +169,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="read_theme.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="read_theme.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/components/read_theme.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2610">
-                  <caret line="87" column="8" lean-forward="false" selection-start-line="87" selection-start-column="3" selection-end-line="87" selection-end-column="8" />
+                <state relative-caret-position="219">
+                  <caret line="77" column="22" lean-forward="true" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="22" />
                   <folding />
                 </state>
               </provider>
@@ -195,7 +195,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>OnEdit</find>
       <find>isShowThemeDialog</find>
       <find>OnEditthemeDialog</find>
       <find>aaaaaa</find>
@@ -220,11 +219,12 @@
       <find>theme</find>
       <find>selectType</find>
       <find>article</find>
-      <find>postRespondOne</find>
       <find>no_respond</find>
       <find>text_content</find>
       <find>respondTwo</find>
       <find>respond</find>
+      <find>body-height</find>
+      <find>postRespondOne</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -306,8 +306,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -466,6 +464,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -626,7 +626,10 @@
       <workItem from="1493718330930" duration="1434000" />
       <workItem from="1493721111521" duration="159000" />
       <workItem from="1493775475113" duration="6729000" />
-      <workItem from="1493804186764" duration="654000" />
+      <workItem from="1493804186764" duration="1296000" />
+      <workItem from="1493861697293" duration="66000" />
+      <workItem from="1493864795410" duration="2025000" />
+      <workItem from="1493890541864" duration="1506000" />
     </task>
     <task id="LOCAL-00001" summary="new">
       <created>1490872660491</created>
@@ -761,11 +764,18 @@
       <option name="project" value="LOCAL" />
       <updated>1493721154129</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="5.3 评论 二级内容基本完成">
+      <created>1493805978394</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1493805978394</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="381415000" />
+    <option name="totallyTimeSpent" value="385654000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -777,7 +787,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13541667" sideWeight="0.5083933" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.096726194" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30552545" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25785482" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -854,7 +864,8 @@
     <MESSAGE value="4.25 路由这样设置" />
     <MESSAGE value="4.27 界面美化 theme弹出框" />
     <MESSAGE value="5.2 评论 二级" />
-    <option name="LAST_COMMIT_MESSAGE" value="5.2 评论 二级" />
+    <MESSAGE value="5.3 评论 二级内容基本完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="5.3 评论 二级内容基本完成" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XDebuggerManager">
@@ -1093,14 +1104,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/read_theme.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2610">
-          <caret line="87" column="8" lean-forward="false" selection-start-line="87" selection-start-column="3" selection-end-line="87" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/config/dev.env.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1183,17 +1186,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/read_article.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4920">
-          <caret line="165" column="0" lean-forward="false" selection-start-line="165" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/article_theme.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
+        <state relative-caret-position="1380">
           <caret line="46" column="112" lean-forward="false" selection-start-line="46" selection-start-column="89" selection-end-line="46" selection-end-column="112" />
           <folding>
             <element signature="n#style#0;n#span#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#el-col#0;n#el-row#0;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -1202,10 +1197,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/read_theme.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="77" column="22" lean-forward="true" selection-start-line="77" selection-start-column="22" selection-end-line="77" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/read_article.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3030">
+          <caret line="101" column="14" lean-forward="false" selection-start-line="101" selection-start-column="14" selection-end-line="101" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/comments.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="124" column="8" lean-forward="false" selection-start-line="124" selection-start-column="8" selection-end-line="124" selection-end-column="8" />
+        <state relative-caret-position="270">
+          <caret line="218" column="14" lean-forward="true" selection-start-line="218" selection-start-column="14" selection-end-line="218" selection-end-column="14" />
           <folding>
             <element signature="n#style#0;n#i#0;n#el-button#0;n#div#0;n#el-col#0;n#el-row#1;n#el-col#0;n#el-row#0;n#template#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#i#0;n#el-button#0;n#div#0;n#el-col#0;n#el-row#0;n#el-col#1;n#el-row#0;n#template#0;n#span#0;n#template#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
@@ -1213,7 +1224,6 @@
             <element signature="n#style#0;n#div#0;n#template#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#1;n#template#0;n#span#1;n#div#0;n#template#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
