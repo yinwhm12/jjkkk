@@ -52,6 +52,7 @@
   import util from '../utiljs/utils'
   export default {
 
+    props: ['selectMenu'],
     data() {
       return {
         activeNames: ['1'],
@@ -99,10 +100,21 @@
               message: message
             })
           }))
+      },
+      load(){
+        if (this.selectMenu === 'collectUsers') {
+          this.getAllUsers(0)
+        }
+      }
+    },
+    watch: {
+      selectMenu(){
+        this.load();
       }
     },
     mounted: function () {
 //      this.getAllUsers(0)
+      this.load();
     }
   }
 </script>

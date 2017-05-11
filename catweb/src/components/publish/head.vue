@@ -157,9 +157,9 @@
       },
       personMenu(command){
         if (command === "personal_data") {
-
+          this.$router.push({name: 'userInfo', params: {selectType: "privateInfo"}})
         } else if (command === "collection") {
-
+          this.$router.push({name: 'userInfo', params: {selectType: "collectArticles"}})
         } else if (command === "logout") {
           this.$store.commit('reset')
 //          this.$router.push({path: '/home'})

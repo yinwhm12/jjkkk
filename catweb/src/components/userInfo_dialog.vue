@@ -63,7 +63,6 @@
     props: ["user_id"],
     data(){
       return {
-        textarea: '',
         userInfo: {},
         attentionState: 'no',
       }
@@ -75,6 +74,7 @@
     },
     watch: {
       user_id(){
+        console.debug("-----watch----", this.user_id)
         this.getUserInfo();
         this.getAttetionState()
       }
@@ -122,8 +122,8 @@
       }
     },
     mounted: function () {
-//        this.getUserInfo();
-//        this.getAttetionState()
+      this.getUserInfo();
+      this.getAttetionState()
     }
   }
 </script>

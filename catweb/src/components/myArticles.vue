@@ -1,5 +1,5 @@
 <template>
-  <!--收藏的文章页面 点击弹出框形式-->
+  <!--我的文章 点击弹出框形式-->
   <div>
     <el-row>
       <el-col>
@@ -43,8 +43,9 @@
               <el-col :span="6">
                 <div class="second-head">
                   <!--作者-->
-                  <el-button type="info" size="mini" @click="readUserInfo(item)"><i class="el-icon-caret-right"><span
-                    v-if="item.user">{{ item.user.email }}</span></i></el-button>
+                  <el-button type="info" size="mini" @click="readUserInfo(userInfo)"><i class="el-icon-caret-right">
+                    {{userInfo.email}}
+                  </i></el-button>
 
                 </div>
               </el-col>
@@ -107,9 +108,9 @@
     <el-dialog size="tiny" v-model="isShowUserDialog">
       <user-dialog :user_id="user_id" @closeUserDialog="closeUserInfoDialog"></user-dialog>
       <span slot="footer" class="dialog-footer">
-    <el-button @click="isShowUserDialog = false" size="small">取 消</el-button>
+        <el-button @click="isShowUserDialog = false" size="small">取 消</el-button>
         <!--<el-button type="primary" @click="isShowUserDialog = false">确 定</el-button>-->
-  </span>
+      </span>
     </el-dialog>
 
   </div>
@@ -117,7 +118,7 @@
 
 <style scoped>
   .body-height {
-    height: 540px;
+    height: 700px;
     max-height: 1200px;
   }
 
@@ -171,6 +172,7 @@
         article_id: 0,
         isShowUserDialog: false,
         user_id: 0,
+        userInfo: {}
       }
     },
     watch: {
@@ -196,7 +198,7 @@
         if (page === 0) {
           this.pageInfo.offset = 0
         }
-        let url = '/user/getCollectArticles/?limit=' + this.pageInfo.limit
+        let url = '/user/getMyArticles/?limit=' + this.pageInfo.limit
           + '&offset=' + this.pageInfo.offset
         this.$http.get(url)
           .then((res => {
@@ -209,17 +211,27 @@
         this.isShowReadDialog = true
       },
       readUserInfo(item){
+
+        this.user_id = item.id
         this.isShowUserDialog = true
-        this.user_id = item.user.id
+      },
+      //获取作者信息
+      getMyInfo(){
+        this.$http.get('/user/getSelf/')
+          .then((res => {
+            this.userInfo = res.data
+          }))
       },
       load(){
-        if (this.selectMenu === 'collectArticles') {
+        if (this.selectMenu === 'myArticles') {
           this.getCollectArticles(0);
+          this.getMyInfo();
         }
       }
     },
     mounted: function () {
-//    this.getCollectArticles();
+//      this.getCollectArticles();
+//      this.getMyInfo();
       this.load();
     }
   }

@@ -113,6 +113,7 @@
 
 <script>
   export default{
+    props: ['selectMenu'],
     data(){
       return {
         userInfo: {
@@ -237,11 +238,22 @@
           .then((res => {
             this.userInfo = res.data
           }))
+      },
+      load(){
+        if (this.selectMenu === 'privateInfo') {
+          this.getMyself();
+        }
       }
 
     },
+    watch: {
+      selectMenu(){
+        this.load();
+      }
+    },
     mounted: function () {
 //      this.getMyself();
+      this.load();
     }
   }
 </script>
