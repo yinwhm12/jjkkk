@@ -118,7 +118,7 @@
     <el-row>
       <el-col>
         <div class="ok-button">
-          <el-button type="info" @click="postRespondOne">发表评论</el-button>
+          <el-button type="info" @click="postRespondOne()">发表评论</el-button>
         </div>
       </el-col>
     </el-row>
@@ -168,7 +168,8 @@
             respondTwo: {
                 text_content: '',
                 respond_one: 0,
-            }
+            },
+            respondOndId: 0,
           }
       },
     methods: {
@@ -191,6 +192,9 @@
               message: message
             }),
               this.getAllRespond();
+            //信息提交 一级回复时的接口
+            this.postRespondOneMessage();
+
           }))
 //            .catch((err =>{
 //                this.$message({
@@ -208,6 +212,7 @@
                 return
               }
               this.respondAll =  res.data
+            this.respondOndId = this.respondAll.respond_one_id
               this.noRespond = 'has'
           }))
       },
@@ -237,6 +242,18 @@
 
             //重新加载
             this.getAllRespond()
+
+          }))
+      },
+      //一级回复时，向作者回复通知
+      postRespondOneMessage(){
+        let messageJSON = {
+          "article_id": this.article_id,
+          "respond_one_id": this.respondOndId,
+        }
+        let data = JSON.stringify(messageJSON)
+        this.$http.post('/message/toOwner/', data)
+          .then((res => {
 
           }))
       }

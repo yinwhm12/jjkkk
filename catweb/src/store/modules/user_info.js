@@ -20,7 +20,7 @@ const state = {
   article_url: {
     '/home/article_list': 'root1=1',
     '/home/post_list': 'root1=2',
-    '/home/outsides_list': 'root1?3',
+    '/home/outsides_list': 'root1=3',
     '/home/subject/chinese_list': 'root2=1',
     '/home/subject/math_list': 'root2=2',
     '/home/subject/english_list': 'root2=3',
