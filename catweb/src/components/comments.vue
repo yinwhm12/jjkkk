@@ -226,6 +226,7 @@
         }
         this.respondTwo.text_content = respond.respondTwoContent
         this.respondTwo.respond_one = respond.respond_one_id
+        let getRespondOneId = respond.respond_one_id
         let data = JSON.stringify(this.respondTwo)
         let url = '/comment_two/'
         this.$http.post(url,data)
@@ -242,6 +243,8 @@
 
             //重新加载
             this.getAllRespond()
+            //二级提交时，进行信息写入
+            this.postRespondTwoMessage(getRespondOneId)
 
           }))
       },
@@ -256,6 +259,19 @@
           .then((res => {
 
           }))
+      },
+      //二级回复时，向参与的人群(参与一级的)回复通知
+      postRespondTwoMessage(getRespondOneId){
+        let messageJSON = {
+          "article_id": this.article_id,
+          "respond_one_id": getRespondOneId,
+        }
+        let data = JSON.stringify(messageJSON)
+        this.$http.post('/message/toMany', data)
+          .then((res => {
+
+          }))
+
       }
 
     },

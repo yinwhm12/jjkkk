@@ -1,6 +1,7 @@
 <template>
   <!--关注人信息页面  点击是弹出框 显示关注人信息-->
   <div>
+    <span v-if="pageInfo.total >0">
     <el-row>
       <el-col :push="1">
         <div class="grid-content bg-purple-light body-css">
@@ -39,6 +40,10 @@
         </div>
       </el-col>
     </el-row>
+    </span>
+    <span v-else>
+      <div style="font-family: 仿宋;font-size: 30px;text-align: center">暂无关注任何人群</div>
+    </span>
   </div>
 </template>
 
@@ -63,7 +68,7 @@
           offset: 0,
           total: 0,
         },
-        users: {}
+        users: {},
       };
     },
     methods: {

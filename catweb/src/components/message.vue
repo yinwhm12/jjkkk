@@ -61,8 +61,8 @@
     <!--查看框-->
     <template>
       <el-dialog
-        title="阅读"
         size="small"
+        :show-close="false"
         v-model="isShowReadDialog">
         <read-article :article_id="article_id" @close="onEditClose"></read-article>
       </el-dialog>
@@ -101,14 +101,29 @@
         hasMessageFlag: 'noMessage',
         article_id: 0,
         isShowReadDialog: false,
+        messageId: '0',//具体查看某条信息的id
       };
     },
     methods: {
       handleChange(){
 
       },
+      handleClose(done){
+        console.debug("---------", done)
+      },
       onEditClose(needRefresh){
         this.isShowReadDialog = false
+        //当关闭时，说明此条信息已经读取了
+        this.hadReadMessage();
+
+      },
+      hadReadMessage(){//已读信息
+        if (this.messageId !== 0 && this.radio === '1') {
+          this.$http.put('/message/hadReadMessage/' + this.messageId)
+            .then((res => {
+              this.getMessage(this.pageInfo.currentPage);
+            }))
+        }
       },
       getMessage(page = 0){
         if (page === 0) {
@@ -133,6 +148,7 @@
       //查看详情按钮
       checkMessage(message){
         this.article_id = message.article.tid
+        this.messageId = message.message_id
         this.isShowReadDialog = true
       },
       //删除信息

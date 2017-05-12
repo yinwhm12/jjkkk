@@ -15,10 +15,11 @@
         <!--</el-row>-->
         <el-form label-position="right" label-width="110px" :model="userInfo">
           <el-form-item label="昵称">
-            <el-input v-model="userInfo.name"></el-input>
+            <el-input v-model="userInfo.name" type="text"></el-input>
           </el-form-item>
           <el-form-item label="邮箱">
-            <el-input v-model="userInfo.email" :readonly="true" type="text"></el-input>
+            <!--<el-input v-model="userInfo.email" :readonly="true" type="text"></el-input>-->
+            {{userInfo.email}}
           </el-form-item>
           <el-form-item label="城市">
             <el-input v-model="userInfo.city"></el-input>

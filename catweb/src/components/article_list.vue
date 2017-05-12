@@ -1,7 +1,7 @@
 <template>
   <!--全部文章 分页-->
   <div>
-    <el-row>
+    <el-row style="margin-top: -18px">
       <el-col :span="14" :push="5" :pull="5">
         <div class="grid-content bg-purple-light body-height">
           <!--标题-->
@@ -10,7 +10,8 @@
               <el-col :push="3">
                 <div class="page-head">
                   <!--主体-->
-                  {{ item.title }}
+                  <!--{{ item.title }}-->
+                  <el-button type="text" size="large" :plain="true" @click="read(item)">{{item.title}}</el-button>
                 </div>
               </el-col>
             </el-row>
@@ -30,40 +31,55 @@
             </el-row>
             <!--文章详情-->
             <el-row>
-              <el-col :span="8">
+              <el-col :span="6">
                 <div class="second-head">
                   <!--<i class="el-icon-date"></i>-->
                   <!--时间-->
-                  <el-button type="text" size="mini"><i class="el-icon-date">{{item.created_time | time }}</i>
+                  <el-button type="text" size="mini" style="color: #475669;"><i
+                    class="el-icon-date">{{item.created_time | time }}</i>
                   </el-button>
                   <!--{{ item.created_time | time}}-->
                 </div>
               </el-col>
 
-              <el-col :span="8">
+              <el-col :span="6">
                 <div class="second-head">
                   <!--作者-->
-                  <el-button type="info" size="mini"><i class="el-icon-caret-right"><span
+                  <el-button type="info" size="mini" @click="readUserInfo(item)"><i class="el-icon-caret-right"><span
                     v-if="item.user">{{ item.user.email }}</span></i></el-button>
-
-                </div>
-              </el-col>
-
-              <el-col :span="5">
-                <div class="second-head">
-                  <el-button type="text" size="mini" @click="read(item)"><i class="el-icon-caret-right">阅读:<span
-                    v-if="item.value_article">{{ item.value_article.read_count}}</span></i></el-button>
 
                 </div>
               </el-col>
 
               <el-col :span="3">
                 <div class="second-head">
-                  <el-button type="text" size="mini"><i class="el-icon-circle-check">赞:<span
-                    v-if="item.value_article">{{ item.value_article.up_vout}}</span></i></el-button>
-
+                  <el-button type="text" size="mini" @click="read(item)"><i class="el-icon-caret-right"
+                                                                            style="color: #475669;">阅读:<span
+                    v-if="item.value_article">{{ item.value_article.read_count}}</span></i></el-button>
                 </div>
               </el-col>
+
+              <el-col :span="3">
+                <div class="second-head">
+                  <el-button type="text" size="mini"><i class="el-icon-circle-check" style="color: #475669;">赞:<span
+                    v-if="item.value_article">{{ item.value_article.up_vout}}</span></i></el-button>
+                </div>
+              </el-col>
+
+              <el-col :span="3">
+                <div class="second-head">
+                  <el-button type="text" size="mini"><i class="el-icon-star-on" style="color: #475669;">收藏:<span
+                    v-if="item.value_article">{{ item.value_article.collected_count}}</span></i></el-button>
+                </div>
+              </el-col>
+
+              <el-col :span="3">
+                <div class="second-head">
+                  <el-button type="text" icon="edit" size="mini" style="color: #475669;">评论:
+                    <span v-if="item.value_article">{{item.value_article.value_count}}</span></el-button>
+                </div>
+              </el-col>
+
             </el-row>
           </template>
           <!--页数-->
@@ -82,10 +98,19 @@
     </el-row>
 
     <el-dialog
-      title="阅读"
       size="small"
-      v-model="isShowReadDialog">
+      v-model="isShowReadDialog"
+    >
       <read-article :article_id="article_id" @close="onEditClose"></read-article>
+    </el-dialog>
+
+    <!--用户信息弹出框-->
+    <el-dialog size="tiny" v-model="isShowUserDialog">
+      <user-dialog :user_id="user_id" @closeUserDialog="closeUserInfoDialog"></user-dialog>
+      <span slot="footer" class="dialog-footer">
+            <el-button @click="isShowUserDialog = false" size="small">取 消</el-button>
+        <!--<el-button type="primary" @click="isShowUserDialog = false">确 定</el-button>-->
+          </span>
     </el-dialog>
 
   </div>
@@ -127,10 +152,12 @@
   import {mapState, mapGetters} from 'vuex'
   import util from '../utiljs/utils'
   import ReadArticle from './read_article.vue'
+  import UserDialog  from './userInfo_dialog.vue'
 
   export default{
     components: {
-      ReadArticle
+      ReadArticle,
+      UserDialog,
     },
     data: function () {
       return {
@@ -148,6 +175,8 @@
         articles: {},
         isShowReadDialog: false,
         article_id: 0,
+        isShowUserDialog: false,
+        user_id: 0,
       }
     },
     computed: {
@@ -161,7 +190,7 @@
     },
     watch: {
       '$route'(to, from){//同级之间 会进入(有监控) 路由变化
-        console.debug("---------------", this.$route.params.root1)
+//        console.debug("---------------", this.$route.params.root1)
         this.$store.commit("setUrl", to.path)
         this.getAllInfo(0)
       },
@@ -170,11 +199,21 @@
     methods: {
       onEditClose(needRefresh){
         this.isShowReadDialog = false;
+        this.getAllInfo(this.pageInfo.currentPage)
       },
       handleCurrentChange(currentPage) {
         let offset = util.buildOffsetByPage(currentPage, this.pageInfo.limit)
         this.pageInfo.offset = offset
         this.getAllInfo(currentPage)
+      },
+      closeUserInfoDialog(freshState){
+        this.isShowUserDialog = false;
+      },
+      readUserInfo(item){
+        if (item.user !== null) {
+          this.user_id = item.user.id
+          this.isShowUserDialog = true
+        }
       },
       getAllInfo(page = 0){
         if (page === 0) {

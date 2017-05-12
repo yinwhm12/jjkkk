@@ -74,7 +74,6 @@
     },
     watch: {
       user_id(){
-        console.debug("-----watch----", this.user_id)
         this.getUserInfo();
         this.getAttetionState()
       }
@@ -112,7 +111,6 @@
           }))
       },
       getAttetionState(){
-        console.debug("====", this.userStoreInfo)
         if (this.userStoreInfo.id !== '' && this.userStoreInfo.accessToken !== '') {
           this.$http.get('/user/getCollectUserState/' + this.user_id)
             .then((res => {

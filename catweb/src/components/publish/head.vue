@@ -2,7 +2,9 @@
   <div>
     <el-row>
       <el-col :lg="7" :sm="3" :md="5" :xs="1">
-        <div class="grid-content-left bg-purple-dark">catW</div>
+        <div class="grid-content-left bg-purple-dark">
+          <router-link :to="{name: 'board'}"><a>catW</a></router-link>
+        </div>
       </el-col>
       <el-col :lg="10" :xs="20" :sm="18" :md="14">
         <el-menu theme="dark" class="grid-content el-menu" mode="horizontal"
@@ -235,6 +237,14 @@
     font-size: 52px;
   }
 
+  .router-link-active {
+    color: red;
+    text-decoration: none;
+  }
+
+  a:-webkit-any-link {
+    text-decoration: none;
+  }
   .grid-content-right {
     min-height: 60px;
     border-top-right-radius: 4px;

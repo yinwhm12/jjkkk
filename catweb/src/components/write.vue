@@ -114,9 +114,9 @@
     },
     methods: {
       handleChange(){
-        console.debug("ggggggg", this.selectType)
-        console.debug("gggglll", this.levelType)
-        console.debug("gggrrrr", this.root2Type)
+//        console.debug("ggggggg", this.selectType)
+//        console.debug("gggglll", this.levelType)
+//        console.debug("gggrrrr", this.root2Type)
 //        let level = JSON.stringify(this.levelType)
 //        var json= eval('('+level+')');
 //        console.debug("===",json)
@@ -173,17 +173,17 @@
           .then((res) => {
             this.$message("ok");
             data = res.data
-            console.debug("-----ddd", data)
+//            console.debug("-----ddd", data)
           })
           .catch((err) => {
-            console.debug("--------")
+//            console.debug("--------")
 //            this.$message({
 //              type: 'warning',
 //              message: '请登录操作!'
 //            })
           })
         if (data === 'fail') {
-          console.debug("--------====")
+//          console.debug("--------====")
           this.$message({
             type: 'warning',
             message: '请登录操作!'

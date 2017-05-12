@@ -34,11 +34,12 @@
           <div class="second-head">
             <!--作者-->
             <!--<span v-if="article.user">{{ article.user.email }}</span>-->
-            <el-button type="info" size="mini"><span v-if="article.user">{{ article.user.email }}</span></el-button>
+            <el-button type="info" size="mini" @click="readUserInfo(article)"><span
+              v-if="article.user">{{ article.user.email }}</span></el-button>
           </div>
         </el-col>
 
-        <el-col :span="4">
+        <el-col :span="3">
           <div class="second-head">
             <el-button type="text" size="mini">
               <i class="el-icon-caret-right">
@@ -48,7 +49,7 @@
           </div>
         </el-col>
 
-        <el-col :span="4">
+        <el-col :span="3">
           <div class="second-head">
             <el-button type="primary" size="mini" @click="parseButton(articleState.up_state)">
               <i class="el-icon-circle-check">
@@ -61,7 +62,7 @@
           </div>
         </el-col>
         <!--收藏-->
-        <el-col :span="4">
+        <el-col :span="3">
           <div class="second-head">
             <el-button type="primary" size="mini" @click="collectButton(articleState.collect_state)">
               <i class="el-icon-star-on">
@@ -69,6 +70,13 @@
                 <span v-else>收藏:</span>
                 <span v-if="article.value_article">{{ article.value_article.collected_count}}</span>
               </i></el-button>
+          </div>
+        </el-col>
+        <!--评论-->
+        <el-col :span="3">
+          <div class="second-head">
+            <el-button type="text" icon="edit" size="mini">评论:
+                    <span v-if="article.value_article">{{article.value_article.value_count}}</span></el-button>
           </div>
         </el-col>
 
@@ -93,6 +101,16 @@
 
     </div></el-col>
   </el-row>
+
+    <!--用户信息弹出框-->
+    <el-dialog size="small" v-model="isShowUserDialog"
+               :modal-append-to-body="false" :modal="false">
+      <user-dialog :user_id="user_id" @closeUserDialog="closeUserInfoDialog"></user-dialog>
+      <span slot="footer" class="dialog-footer">
+            <el-button @click="isShowUserDialog = false" size="small">取 消</el-button>
+        <!--<el-button type="primary" @click="isShowUserDialog = false">确 定</el-button>-->
+          </span>
+    </el-dialog>
 
   </div>
 </template>
@@ -123,10 +141,12 @@
 <script>
   import CommentsView from './comments.vue'
   import {mapState} from 'vuex'
+  import UserDialog from './userInfo_dialog.vue'
   export default {
     props: ["article_id", "needRefreshThemePart"],
   components:{
-    CommentsView
+    CommentsView,
+    UserDialog,
   },
     computed: {
       ...mapState({
@@ -142,6 +162,8 @@
               collect_state: 0,//收藏状态
             },
             noLoginState: 'yes',
+            isShowUserDialog: false,
+            user_id: 0,
           }
     },
     methods: {
@@ -244,7 +266,16 @@
           })
           return
         }
-      }
+      },
+      closeUserInfoDialog(freshState){
+        this.isShowUserDialog = false;
+      },
+      readUserInfo(article){
+        if (article.user !== null) {
+          this.user_id = article.user.id
+          this.isShowUserDialog = true
+        }
+      },
 
     },
     watch: {
