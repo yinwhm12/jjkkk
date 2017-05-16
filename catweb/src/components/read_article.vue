@@ -6,7 +6,7 @@
     <el-col :span="24">
       <div class="grid-content bg-purple-light body-height">
       <!--主体-->
-
+        <span v-show="false" v-loading.fullscreen.lock="fullscreenLoading" element-loading-text="拼命加载中..."></span>
       <div>
         <el-button @click="close(false)">关闭</el-button>
       </div>
@@ -164,6 +164,7 @@
             noLoginState: 'yes',
             isShowUserDialog: false,
             user_id: 0,
+            fullscreenLoading: true,//加载
           }
     },
     methods: {
@@ -174,10 +175,12 @@
       },
       getArticle(){//根据id 获取具体的文章
 //        console.debug("id----", this.article_id)
+        this.fullscreenLoading = true
         this.$http.get('/article/getOne/' + this.article_id)
           .then((res => {
             this.article = res.data
 //            console.debug("aaaaaa", this.article)
+            this.fullscreenLoading = false
           }))
       },
       getValue(){//获取文章 价值
@@ -246,7 +249,7 @@
       },
       //获取用户是否已经点过赞或者已经收藏过 状态
       getArticleState(){
-        if (this.userInfo.id !== '' && this.userInfo.accessToken !== '') {
+        if (this.userInfo.email !== '') {
           let url = '/user/getUpState/' + this.article_id
           this.$http.get(url)
             .then((res => {
@@ -255,7 +258,7 @@
         }
       },
       getLoginState(){
-        if (this.userInfo.id !== '' && this.userInfo.accessToken !== '') {
+        if (this.userInfo.email !== '') {
           //已登录 修改状态
           this.noLoginState = 'no'
           return

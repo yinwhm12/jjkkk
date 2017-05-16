@@ -25,6 +25,8 @@
                                 最新资料<span style="float: right"> 更多>></span>
                                 <div>
                                   <el-table
+                                    v-loading="loading1"
+                                    element-loading-text="拼命加载..."
                                     :data="ones"
                                     :show-header="false"
                                     @row-click='open'
@@ -56,8 +58,11 @@
                                 热门帖子<span style="float: right"> 更多>></span>
                                 <div>
                                   <el-table
+                                    v-loading="loading2"
+                                    element-loading-text="拼命加载..."
                                     :data="twos"
                                     :show-header="false"
+                                    @row-click='open'
                                     style="height: 220px">
                                     <el-table-column
                                       prop="title"
@@ -126,7 +131,9 @@
           date: '2016-05-02'
         }
         ],
-        needRefreshThemePart: false //标记article_theme 被点击 关闭时，阅读数量增1 需更新数据
+        needRefreshThemePart: false, //标记article_theme 被点击 关闭时，阅读数量增1 需更新数据
+        loading1: true,//左上角1 加载
+        loading2: true,//右上角 2 加载
       }
     },
     mounted: function () {
@@ -151,6 +158,7 @@
                 option.created_time = newDate.toLocaleString()
                 this.ones.push(option)
               }
+              this.loading1 = false
             }
           })
       },
@@ -169,12 +177,13 @@
                 option.created_time = newDate.toLocaleString()
                 this.twos.push(option)
               }
+              this.loading2 = false
             }
           })
       },
       open(row){
 //        console.log("-------hello")
-        console.log("-------hellorow", row)
+//        console.log("-------hellorow", row)
         this.isShowReadDialog = true;
         this.article_id = row.tid
 //        this.$http.get()

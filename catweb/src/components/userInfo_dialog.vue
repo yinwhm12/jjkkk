@@ -111,7 +111,7 @@
           }))
       },
       getAttetionState(){
-        if (this.userStoreInfo.id !== '' && this.userStoreInfo.accessToken !== '') {
+        if (this.userStoreInfo.email !== '') {
           this.$http.get('/user/getCollectUserState/' + this.user_id)
             .then((res => {
               this.attentionState = res.data

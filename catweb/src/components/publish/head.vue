@@ -48,7 +48,7 @@
       <el-col :lg="4" :sm="1" :md="3" :xs="1">
         <div class="grid-content-right bg-purple-dark">
           <div class="right-head">
-            <span v-if="mapUserInfo.id !== ''">
+            <span v-if="mapUserInfo.email !== ''">
                 <el-dropdown @command="personMenu">
                   <span class="el-dropdown-link dropdown">
                     {{mapUserInfo.email}}
@@ -64,9 +64,9 @@
                 </el-dropdown>
               </span>
             <span v-else>
-          <el-button type="text" @click="login" size="large">登录</el-button>
-        <el-button type="text" @click="register" size="large">注册</el-button>
-                </span>
+              <el-button type="text" @click="login" size="large">登录</el-button>
+              <el-button type="text" @click="register" size="large">注册</el-button>
+            </span>
           </div>
         </div>
       </el-col>
@@ -166,6 +166,8 @@
           this.$store.commit('reset')
 //          this.$router.push({path: '/home'})
           sessionStorage.removeItem('token')
+          //删去本地
+          window.localStorage.removeItem('userEmail')
         } else if (command === "write_article") {
           this.$store.commit("setArticleType", 1)
           this.$router.push({path: '/home/article'})
@@ -179,7 +181,16 @@
         } else {
 
         }
+      },
+      getLoginState(){
+        let eamil = window.localStorage.getItem('userEmail')
+        if (eamil !== null) {
+          this.$store.commit("setUserEmail", eamil)
+        }
       }
+    },
+    mounted: function () {
+      this.getLoginState();
     }
   }
 </script>

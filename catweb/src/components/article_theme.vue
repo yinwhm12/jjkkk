@@ -5,11 +5,13 @@
         <div class="grid-content bg-purple-light content-three">
           <el-row>
             <el-col>
+              <!--<span v-show="false" v-loading.body="loading" element-loading-text="拼命加载中..." class="ttt"></span>-->
               <div class="content-width-head content-font">
                 最新文章<span style="float: right">more>></span>
                 <template v-for="item in articles">
                   <el-row>
                     <el-col>
+
                       <div class="title-css content">
                         <!--主题-->
                         <el-button type="text" size="large" :plain="true" @click="read(item)">{{item.title}}</el-button>
@@ -144,6 +146,7 @@
         theme: {},//文章Id
         isShowUserDialog: false,
         user_id: 0,
+//        loading: true,//加载
       }
     },
     mounted: function () {
@@ -151,9 +154,11 @@
     },
     methods: {
       getThemeArticle(){
+//          this.loading = true
         let url = '/article/getThemes/1?flag=index'
         this.$http.get(url).then((res => {
           this.articles = res.data;
+//          this.loading = false
         }))
       },
       read(item){

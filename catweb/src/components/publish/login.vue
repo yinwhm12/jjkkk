@@ -9,7 +9,7 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm('user')">登录</el-button>
-        <el-button type="primary" @click="resetForm('user')">重置</el-button>
+        <!--<el-button type="primary" @click="resetForm('user')">重置</el-button>-->
         <el-button type="primary" @click="close(false)">关闭</el-button>
       </el-form-item>
     </el-form>
@@ -37,8 +37,11 @@
             {required: true, min: 6, max: 12, message: '请输入6到12位长度的有效密码'},
             {validator: validatePass, trigger: 'blur'}
           ],
+//          loginState:'登录',
         }
       };
+    },
+    computed: {
     },
     methods: {
       submitForm(formName) {
@@ -51,13 +54,19 @@
               .then((res) => {
 //                console.debug("---", res.data)
                 this.$store.commit('SET_BASEINFO', res.data)
+                //在本地存入email信息
+                window.localStorage.setItem('userEmail', this.user.email)
                 //将token放在本地的header
                 sessionStorage.setItem('token', res.data.token)
                 this.close(true)
 
               })
           } else {
-            console.log('error submit!!');
+//            console.log('error submit!!');
+            this.$message({
+              type: 'warning',
+              message: '输入信息有误!'
+            })
             return false;
           }
         });
@@ -67,7 +76,8 @@
       },
       close(needRefresh = false){
         this.$emit('close', needRefresh)
-      }
+
+      },
     }
   }
 </script>

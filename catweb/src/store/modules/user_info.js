@@ -60,6 +60,9 @@ const mutations = {
   },
   setRefreshByRead(state, data){
     state.needRefreshByClickRead = data
+  },
+  setUserEmail(state, data){
+    state.email = data
   }
 }
 

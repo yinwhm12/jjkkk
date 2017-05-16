@@ -78,11 +78,17 @@
 //                console.debug("-----tttt----", res.data)
                 sessionStorage.setItem('token', res.data.token)
                 this.$store.commit('SET_BASEINFO', res.data)
-                this.$router.push({path: '/home/welcome'})
+                //在本地存入email信息
+                window.localStorage.setItem('userEmail', this.user.email)
+                this.$router.push({path: '/home'})
                 this.close(true)
               })
           } else {
-            console.log('error submit!!');
+//            console.log('error submit!!');
+            this.$message({
+              type: 'warning',
+              message: '输入信息有误!'
+            })
             return false;
           }
         });

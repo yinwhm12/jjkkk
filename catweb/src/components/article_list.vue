@@ -5,6 +5,8 @@
       <el-col :span="14" :push="5" :pull="5">
         <div class="grid-content bg-purple-light body-height">
           <!--标题-->
+          <el-button v-show="false" v-loading.fullscreen.lock="fullscreenLoading"
+                     element-loading-text="拼命加载中..."></el-button>
           <template v-for="item in articles">
             <el-row>
               <el-col :push="3">
@@ -177,6 +179,7 @@
         article_id: 0,
         isShowUserDialog: false,
         user_id: 0,
+        fullscreenLoading: true,//加载值
       }
     },
     computed: {
@@ -216,6 +219,7 @@
         }
       },
       getAllInfo(page = 0){
+        this.fullscreenLoading = true
         if (page === 0) {
           this.pageInfo.offset = 0
         }
@@ -225,6 +229,7 @@
           .then((res => {
             this.articles = res.body.data
             this.pageInfo.total = res.body.total
+            this.fullscreenLoading = false
           }))
       },
       load(){//不同级之间 会重新加载(路由)
