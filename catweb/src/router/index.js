@@ -11,6 +11,7 @@ import WriteView from '../components/write.vue'
 import ReadArticle from '../components/read_article.vue'
 import ArticleList from '../components/article_list.vue'
 import UserInfo from '../components/userInfo.vue'
+import Search from '../components/search.vue'
 
 import 'element-ui/lib/theme-default/index.css'
 
@@ -88,6 +89,11 @@ export  default  new Router({
           name: 'userInfo',
           path: 'userInfo',
           component: UserInfo
+        },
+        {
+          name: 'search',
+          path: 'search',
+          component: Search
         }
       ]
     }, {

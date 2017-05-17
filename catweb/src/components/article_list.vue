@@ -163,11 +163,6 @@
     },
     data: function () {
       return {
-        textarea: '',
-        currentPage1: 5,
-        currentPage2: 5,
-        currentPage3: 5,
-        currentPage4: 4,
         pageInfo: {
           currentPage: 1,
           limit: ENV.PAGE_SHOW_COUNT,
