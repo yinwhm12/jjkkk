@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style>
-  /*.el-loading-mask{*/
-  /*position: static!important;*/
-  /*}*/
+  .el-loading-mask {
+    position: static !important;
+  }
 </style>

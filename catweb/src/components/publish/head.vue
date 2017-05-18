@@ -39,6 +39,7 @@
             placeholder="搜索"
             icon="search"
             v-model="input2"
+            @keyup.enter.native="searchEvent"
             :on-icon-click="handleIconClick">
           </el-input>
         </div>
@@ -119,13 +120,25 @@
         this.dialogType = 1;
       },
       handleIconClick(){
+        if (this.input2 !== '') {
+          this.$router.push({name: 'search', params: {searchContent: this.input2}})
+          this.input2 = ''
+        } else {
+          this.$message({
+            type: 'warning',
+            message: '搜索内容不能为空!'
+          })
+        }
+      },
+      searchEvent(){
+        this.handleIconClick();
       },
       onEditClose(needRefresh){
         this.isShowDialog = false;
       },
       handleSelect(key, keypath){
-        console.debug("keeeeee", key)
-        console.debug("keeeeee", keypath)
+//        console.debug("keeeeee", key)
+//        console.debug("keeeeee", keypath)
 
 //        console.debug("-----111111",key.indexOf("root1"))
 //        let ss = key.split("=")
@@ -188,6 +201,15 @@
           this.$store.commit("setUserEmail", eamil)
         }
       }
+    },
+    watch: {
+//      '$route'(to,from){
+//        console.debug("-----to-",to.name)
+//        if (to.name === "board"){
+//          this.$store.commit("setBoardFlag", true)
+//        }
+////        console.debug("-----===",from)
+//      }
     },
     mounted: function () {
       this.getLoginState();

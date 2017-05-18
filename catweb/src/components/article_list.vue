@@ -190,6 +190,7 @@
       '$route'(to, from){//同级之间 会进入(有监控) 路由变化
 //        console.debug("---------------", this.$route.params.root1)
         this.$store.commit("setUrl", to.path)
+        this.pageInfo.currentPage = 1
         this.getAllInfo(0)
       },
 

@@ -114,11 +114,13 @@
   import ReadArticle from '../read_article.vue'
 
   export default{
+
     components: {
       ArticleTheme,
       PartTwo,
       ReadArticle
     },
+
     data: function () {
       return {
 
@@ -271,6 +273,22 @@
     color: #20A0FF;
   }
 
+  .el-table_1_column_9 {
+    color: #20A0FF;
+  }
+
+  .el-table_1_column_11 {
+    color: #20A0FF;
+  }
+
+  .el-table_1_column_13 {
+    color: #20A0FF;
+  }
+
+  .el-table_1_column_15 {
+    color: #20A0FF;
+  }
+
   .el-table_1_column_2 {
     text-align: right;
   }
@@ -286,6 +304,23 @@
   .el-table_1_column_8 {
     text-align: right;
   }
+
+  .el-table_1_column_10 {
+    text-align: right;
+  }
+
+  .el-table_1_column_12 {
+    text-align: right;
+  }
+
+  .el-table_1_column_14 {
+    text-align: right;
+  }
+
+  .el-table_1_column_16 {
+    text-align: right;
+  }
+
 </style>
 
 

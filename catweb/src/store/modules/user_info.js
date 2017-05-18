@@ -26,7 +26,8 @@ const state = {
     '/home/subject/english_list': 'root2=3',
   },
   url_value: '',
-  needRefreshByClickRead: false
+  needRefreshByClickRead: false,
+  boardFlag: false,
 }
 
 const mutations = {
@@ -55,7 +56,7 @@ const mutations = {
     state.types.value = data.value
   },
   setUrl(state, data){
-    console.debug("-------", data)
+    // console.debug("-------", data)
     state.url_value = state.article_url[data]
   },
   setRefreshByRead(state, data){
@@ -63,6 +64,10 @@ const mutations = {
   },
   setUserEmail(state, data){
     state.email = data
+  },
+  setBoardFlag(state, data){
+    // console.debug("-----",data)
+    state.boardFlag = data
   }
 }
 
@@ -72,6 +77,9 @@ const getters = {
   },
   getRefreshState: state => {
     return state.needRefreshByClickRead
+  },
+  getBoardFlag: state => {
+    return state.boardFlag
   }
 }
 

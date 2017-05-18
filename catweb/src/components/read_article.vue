@@ -164,7 +164,7 @@
             noLoginState: 'yes',
             isShowUserDialog: false,
             user_id: 0,
-            fullscreenLoading: true,//加载
+            fullscreenLoading: false,//加载
           }
     },
     methods: {
@@ -180,8 +180,8 @@
           .then((res => {
             this.article = res.data
 //            console.debug("aaaaaa", this.article)
-            this.fullscreenLoading = false
           }))
+        this.fullscreenLoading = false
       },
       getValue(){//获取文章 价值
 
