@@ -27,7 +27,7 @@ const state = {
   },
   url_value: '',
   needRefreshByClickRead: false,
-  boardFlag: false,
+  boardFlag: false,//暂无用
 }
 
 const mutations = {
@@ -65,7 +65,7 @@ const mutations = {
   setUserEmail(state, data){
     state.email = data
   },
-  setBoardFlag(state, data){
+  setBoardFlag(state, data){//暂无用
     // console.debug("-----",data)
     state.boardFlag = data
   }
@@ -78,7 +78,7 @@ const getters = {
   getRefreshState: state => {
     return state.needRefreshByClickRead
   },
-  getBoardFlag: state => {
+  getBoardFlag: state => {//暂无用
     return state.boardFlag
   }
 }

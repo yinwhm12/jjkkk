@@ -50,6 +50,9 @@
         <div class="grid-content-right bg-purple-dark">
           <div class="right-head">
             <span v-if="mapUserInfo.email !== ''">
+              <el-badge value="new">
+                <el-button size="mini" @click="readMessage">{{messageNumber}}</el-button>
+              </el-badge>
                 <el-dropdown @command="personMenu">
                   <span class="el-dropdown-link dropdown">
                     {{mapUserInfo.email}}
@@ -104,6 +107,7 @@
         },
         formLabelWidth: '120px',
         article_type: 0,
+        messageNumber: 0,
       };
     }, computed: {
       ...mapState({
@@ -135,6 +139,11 @@
       },
       onEditClose(needRefresh){
         this.isShowDialog = false;
+        let eamil = window.localStorage.getItem('userEmail')
+        if (eamil !== null) {
+//          this.$store.commit("setUserEmail", eamil)
+          this.getMessageNumber();
+        }
       },
       handleSelect(key, keypath){
 //        console.debug("keeeeee", key)
@@ -199,7 +208,18 @@
         let eamil = window.localStorage.getItem('userEmail')
         if (eamil !== null) {
           this.$store.commit("setUserEmail", eamil)
+          this.getMessageNumber();
         }
+      },
+      getMessageNumber(){
+        let url = '/message/getNews/'
+        this.$http.get(url)
+          .then((res => {
+            this.messageNumber = res.data
+          }))
+      },
+      readMessage(){
+        this.$router.push({name: 'userInfo', params: {selectType: "messages"}})
       }
     },
     watch: {

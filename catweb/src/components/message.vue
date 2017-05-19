@@ -51,8 +51,9 @@
               </div>
             </span>
           <span v-else>
-            <div style="margin-top: 20px;text-align: center">
-            暂无任何消息
+            <div style="margin-top: 20px;text-align: center; font-family: 仿宋;font-size: 30px">
+            <!--暂无任何消息-->
+              {{isContent}}
             </div>
           </span>
         </div>
@@ -102,6 +103,7 @@
         article_id: 0,
         isShowReadDialog: false,
         messageId: '0',//具体查看某条信息的id
+        isContent: '内容加载中...'
       };
     },
     methods: {
@@ -109,7 +111,7 @@
 
       },
       handleClose(done){
-        console.debug("---------", done)
+//        console.debug("---------", done)
       },
       onEditClose(needRefresh){
         this.isShowReadDialog = false
@@ -135,6 +137,7 @@
           .then((res => {
             if (res.body.total <= 0) {
               this.hasMessageFlag = 'noMessage'
+              this.isContent = '暂无任何消息'
               return
             }
             this.messages = res.body.data
@@ -174,6 +177,7 @@
     },
     watch: {
       radio(){
+        this.isContent = '内容加载中...'
         this.getMessage(0)
       },
       selectMenu(){

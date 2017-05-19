@@ -173,6 +173,7 @@
           .then((res) => {
             this.$message("ok");
             data = res.data
+            this.$router.push({name: 'userInfo', params: {selectType: "myArticles"}})
 //            console.debug("-----ddd", data)
           })
           .catch((err) => {

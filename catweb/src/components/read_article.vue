@@ -93,6 +93,7 @@
             placeholder="请输入内容"
             v-model="article.text_content">
           </el-input>
+          <!--<div class="content">{{article.text_content}}</div>-->
         </el-col>
       </el-row>
 
@@ -130,6 +131,16 @@
   .second-head{
     min-height: 20px;
     font-size: 16px;
+  }
+
+  .content {
+    width: 100%;
+    font-family: 仿宋;
+    font-size: 33px;
+  }
+
+  .say-content {
+
   }
 
   .close-button {

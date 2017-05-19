@@ -4,9 +4,9 @@
     <el-row style="margin-top: -18px">
       <el-col :span="14" :push="5" :pull="5">
         <div class="grid-content bg-purple-light body-height">
-          <!--标题-->
           <el-button v-show="false" v-loading.fullscreen.lock="fullscreenLoading"
                      element-loading-text="拼命加载中..."></el-button>
+          <!--标题-->
           <template v-for="item in articles">
             <el-row>
               <el-col :push="3">
@@ -20,15 +20,16 @@
             <!--内容-->
             <el-row>
               <el-col>
-                <el-input
-                  type="text"
-                  :row="3"
-                  size="small"
-                  :maxlenght="150"
-                  :readonly="true"
-                  placeholder="请输入内容"
-                  v-model="item.text_content">
-                </el-input>
+                <!--<el-input-->
+                <!--type="text"-->
+                <!--:row="3"-->
+                <!--size="small"-->
+                <!--:maxlenght="150"-->
+                <!--:readonly="true"-->
+                <!--placeholder="请输入内容"-->
+                <!--v-model="item.text_content">-->
+                <!--</el-input>-->
+                <div class="content">{{item.text_content}} </div>
               </el-col>
             </el-row>
             <!--文章详情-->
@@ -119,7 +120,7 @@
 </template>
 <style scoped>
   .body-height {
-    height: 600px;
+    height: 680px;
     max-height: 1200px;
   }
 
@@ -147,6 +148,25 @@
   .second-head {
     min-height: 18px;
     font-size: 13px;
+  }
+
+  .content {
+    width: 100%;
+    max-height: 65px;
+    color: #8492A6;
+    font-family: 仿宋;
+    font-size: 18px;
+    border: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*white-space: nowrap;*/
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  .pageList {
+    margin-top: 50px;
   }
 </style>
 
@@ -190,7 +210,14 @@
       '$route'(to, from){//同级之间 会进入(有监控) 路由变化
 //        console.debug("---------------", this.$route.params.root1)
         this.$store.commit("setUrl", to.path)
-        this.pageInfo.currentPage = 1
+        this.pageInfo = {
+          currentPage: 1,
+          limit: ENV.PAGE_SHOW_COUNT,
+          offset: 0,
+          total: 0,
+        }
+        this.articles = {}
+//        this.pageInfo.offset = 0
         this.getAllInfo(0)
       },
 
@@ -203,6 +230,7 @@
       handleCurrentChange(currentPage) {
         let offset = util.buildOffsetByPage(currentPage, this.pageInfo.limit)
         this.pageInfo.offset = offset
+        this.articles = {}
         this.getAllInfo(currentPage)
       },
       closeUserInfoDialog(freshState){
@@ -218,6 +246,7 @@
         this.fullscreenLoading = true
         if (page === 0) {
           this.pageInfo.offset = 0
+//          this.pageInfo.currentPage = 1
         }
         let url = '/article/getAll/?' + this.url_value + '&limit='
           + this.pageInfo.limit + '&offset=' + this.pageInfo.offset
@@ -230,6 +259,7 @@
       },
       load(){//不同级之间 会重新加载(路由)
         this.$store.commit("setUrl", this.$route.path)
+//        this.pageInfo.currentPage = 1
         this.getAllInfo(0)
       },
       read(item){

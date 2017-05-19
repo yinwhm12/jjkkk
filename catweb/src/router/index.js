@@ -125,7 +125,7 @@ Vue.http.interceptors.push((request, next) => {
         message: '请登录!',
         type: 'warning'
       })
-
+      window.localStorage.removeItem('userEmail')
     } else if (response.status !== 200) {
       let message = response.status !== 0 ? response.body : "请检查网络"
       Vue.prototype.$message({

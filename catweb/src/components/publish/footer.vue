@@ -10,6 +10,7 @@
 
 <style>
   .footer-line {
-    margin-top: -15px;
+    margin-top: -40px;
+    margin-bottom: -20px;
   }
 </style>

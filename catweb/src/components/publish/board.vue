@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row>
+    <el-row style="margin-top: -20px">
       <el-col :lg="24">
         <div class="grid-content bg-purple head-change"></div>
       </el-col>
@@ -38,7 +38,7 @@
                                       <!--<p>{{scope.row.title}}</p></template>-->
                                     </el-table-column>
                                     <el-table-column
-                                      style="float: right"
+                                      style="float: right;"
                                       prop="created_time"
                                     >
                                     </el-table-column>
@@ -212,7 +212,7 @@
 <style>
   .body-height {
     max-height: 2000px;
-    height: 1200px;
+    height: 1080px;
   }
 
   .hh {
@@ -257,70 +257,13 @@
     padding: 0 !important;
   }
 
-  .el-table_1_column_1 {
+  .el-table__body td:nth-child(2n+1) {
     color: #20A0FF;
   }
 
-  .el-table_1_column_3 {
-    color: #20A0FF;
-  }
-
-  .el-table_1_column_5 {
-    color: #20A0FF;
-  }
-
-  .el-table_1_column_7 {
-    color: #20A0FF;
-  }
-
-  .el-table_1_column_9 {
-    color: #20A0FF;
-  }
-
-  .el-table_1_column_11 {
-    color: #20A0FF;
-  }
-
-  .el-table_1_column_13 {
-    color: #20A0FF;
-  }
-
-  .el-table_1_column_15 {
-    color: #20A0FF;
-  }
-
-  .el-table_1_column_2 {
+  .el-table__body td:nth-child(2n) {
     text-align: right;
   }
-
-  .el-table_1_column_4 {
-    text-align: right;
-  }
-
-  .el-table_1_column_6 {
-    text-align: right;
-  }
-
-  .el-table_1_column_8 {
-    text-align: right;
-  }
-
-  .el-table_1_column_10 {
-    text-align: right;
-  }
-
-  .el-table_1_column_12 {
-    text-align: right;
-  }
-
-  .el-table_1_column_14 {
-    text-align: right;
-  }
-
-  .el-table_1_column_16 {
-    text-align: right;
-  }
-
 </style>
 
 

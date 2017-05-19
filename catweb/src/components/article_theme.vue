@@ -20,7 +20,7 @@
                   </el-row>
                   <el-row>
                     <el-col>
-                      <div class="content">
+                      <div class="content content-in">
                         <!--内容-->
                         {{ item.text_content }}
                       </div>
@@ -104,6 +104,20 @@
   .content {
     color: #8492A6;
     font-family: 仿宋;
+  }
+
+  .content-in {
+    width: 100%;
+    max-height: 65px;
+    /*font-family: 仿宋;*/
+    font-size: 18px;
+    border: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*white-space: nowrap;*/
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 
   .divide {

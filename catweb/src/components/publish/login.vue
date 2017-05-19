@@ -5,7 +5,8 @@
         <el-input v-model="user.email"></el-input>
       </el-form-item>
       <el-form-item label="密码" prop="pass">
-        <el-input type="password" v-model="user.pwd" auto-complete="off"></el-input>
+        <el-input type="password" v-model="user.pwd" auto-complete="off"
+                  @keyup.enter.native="EnterLogin('user')"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="submitForm('user')">登录</el-button>
@@ -15,6 +16,9 @@
     </el-form>
   </div>
 </template>
+<style scoped>
+
+</style>
 <script>
   export default {
     data() {
@@ -70,6 +74,9 @@
             return false;
           }
         });
+      },
+      EnterLogin(user){
+        this.submitForm(user)
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();

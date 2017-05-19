@@ -36,12 +36,13 @@
             <div class="say-content-height">
             <el-input
               type="textarea"
-              :rows="10"
+              :rows="5"
               :autosize="true"
               :readonly="true"
               placeholder="请输入内容"
               v-model="respond.text_content">
             </el-input>
+              <!--{{respond.text_content}}-->
             </div>
           </el-col>
         </el-row>
@@ -59,6 +60,9 @@
                 placeholder="请输入内容"
                 v-model="respondTwo.text_content">
                 </el-input>
+              <!--<div class="say-tow">-->
+              <!--{{respondTwo.text_content}}-->
+              <!--</div>-->
             </el-col>
             <el-col :span="7">
                 <el-row>
@@ -95,6 +99,7 @@
                 placeholder="请输入内容"
                 v-model="respond.respondTwoContent">
                 </el-input>
+
             </el-col>
             <el-col :span="11" :push="2">
               <div><el-button type="warning" @click="respondTwoButton(respond)">顶楼上</el-button></div>
@@ -131,6 +136,20 @@
   font-size: 18px!important;
   width: 100px!important;
 
+}
+
+.say-content {
+  width: 100px !important;
+  font-size: 28px !important;
+  font-family: 仿宋;
+  line-height: 32px !important;
+}
+
+.say-tow {
+  width: 100%;
+  font-size: 18px !important;
+  font-family: 仿宋;
+  max-height: 50px;
 }
   .say-content-height{
     height: 0;

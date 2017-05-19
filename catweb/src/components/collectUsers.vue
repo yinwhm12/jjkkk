@@ -42,7 +42,10 @@
     </el-row>
     </span>
     <span v-else>
-      <div style="font-family: 仿宋;font-size: 30px;text-align: center">暂无关注任何人群</div>
+      <div style="font-family: 仿宋;font-size: 30px;text-align: center">
+        <!--暂无关注任何人群-->
+        {{isContent}}
+      </div>
     </span>
   </div>
 </template>
@@ -69,6 +72,7 @@
           total: 0,
         },
         users: {},
+        isContent: '内容加载中...'
       };
     },
     methods: {
@@ -82,6 +86,9 @@
           .then((res => {
             this.users = res.body.data
             this.pageInfo.total = res.body.total
+            if (this.pageInfo.total <= 0) {
+              this.isContent = '暂无关注任何人群'
+            }
           }))
       },
       handleCurrentChange(currentPage){

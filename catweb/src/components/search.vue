@@ -46,15 +46,16 @@
                   <!--内容-->
                   <el-row style="margin-top: -20px">
                     <el-col>
-                      <el-input
-                        type="text"
-                        :row="3"
-                        size="small"
-                        :maxlenght="150"
-                        :readonly="true"
-                        placeholder="请输入内容"
-                        v-model="item.text_content">
-                      </el-input>
+                      <!--<el-input-->
+                      <!--type="text"-->
+                      <!--:row="3"-->
+                      <!--size="small"-->
+                      <!--:maxlenght="150"-->
+                      <!--:readonly="true"-->
+                      <!--placeholder="请输入内容"-->
+                      <!--v-model="item.text_content">-->
+                      <!--</el-input>-->
+                      <div class="content">{{item.text_content}}</div>
                     </el-col>
                   </el-row>
                   <!--文章详情-->
@@ -165,6 +166,22 @@
 
   .el-input {
     width: 300px !important;
+  }
+
+  .content {
+    width: 100%;
+    max-height: 65px;
+    color: #8492A6;
+    font-family: 仿宋;
+    font-size: 18px;
+    border: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*white-space: nowrap;*/
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+
   }
 
   .el-row {
@@ -278,8 +295,12 @@
               this.pageInfo.total = 0
               this.noContentList = '暂无该关键字的内容，换个关键字搜搜吧!'
             }
-            this.fullscreenLoading = false
+//            this.fullscreenLoading = false
           }))
+          .catch((err => {
+            this.noContentList = '暂无该关键字的内容，换个关键字搜搜吧!'
+          }))
+        this.fullscreenLoading = false
       },
       getFromHead(){
         this.searchContent = this.$route.params.searchContent

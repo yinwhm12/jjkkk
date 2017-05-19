@@ -2,6 +2,9 @@
   <el-row style="margin-top: -20px">
     <el-col :span="14" :push="5" :pull="5">
       <div class="grid-content bg-purple-light body-height">
+        <!--<el-button v-show="false" v-loading.fullscreen.lock="fullscreenLoading"-->
+        <!--element-loading-text="拼命加载中..."></el-button>-->
+
         <el-tabs v-model="selectMenu" type="card" @tab-click="handleClick">
           <el-tab-pane label="个人信息" name="privateInfo">
             <!--个人信息-->
@@ -57,11 +60,13 @@
     },
     data() {
       return {
-        selectMenu: 'privateInfo'
+        selectMenu: 'privateInfo',
+//        fullscreenLoading: false,
       }
     },
     methods: {
       handleClick(tab, event) {
+//          this.fullscreenLoading = true
 //          switch(tab.name) {
 //            case "privateInfo":
 //                console.debug("-----first");

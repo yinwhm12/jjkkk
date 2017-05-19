@@ -18,15 +18,18 @@
               <!--内容-->
               <el-row>
                 <el-col>
-                  <el-input
-                    type="text"
-                    :row="3"
-                    size="small"
-                    :maxlenght="150"
-                    :readonly="true"
-                    placeholder="请输入内容"
-                    v-model="item.text_content">
-                  </el-input>
+                  <!--<el-input-->
+                  <!--type="text"-->
+                  <!--:row="3"-->
+                  <!--size="small"-->
+                  <!--:maxlenght="150"-->
+                  <!--:readonly="true"-->
+                  <!--placeholder="请输入内容"-->
+                  <!--v-model="item.text_content">-->
+                  <!--</el-input>-->
+                  <div class="content">
+                    {{item.text_content}}
+                  </div>
                 </el-col>
               </el-row>
               <!--文章详情-->
@@ -114,7 +117,10 @@
       </el-dialog>
 </span>
     <span v-else>
-      <div style="font-size: 30px;font-family: 仿宋;text-align: center">暂无收藏任何的文章</div>
+      <div style="font-size: 30px;font-family: 仿宋;text-align: center">
+        <!--暂无收藏任何的文章-->
+        {{isContent}}
+      </div>
     </span>
   </div>
 </template>
@@ -125,6 +131,20 @@
     max-height: 1200px;
   }
 
+  .content {
+    width: 100%;
+    max-height: 65px;
+    color: #8492A6;
+    font-family: 仿宋;
+    font-size: 18px;
+    border: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*white-space: nowrap;*/
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
   .page-head {
     line-height: 33px;
     font-size: 30px;
@@ -175,6 +195,7 @@
         article_id: 0,
         isShowUserDialog: false,
         user_id: 0,
+        isContent: '内容加载中...'
       }
     },
     watch: {
@@ -206,6 +227,9 @@
           .then((res => {
             this.articles = res.body.data
             this.pageInfo.total = res.body.total
+            if (this.pageInfo.total <= 0) {
+              this.isContent = '暂无收藏任何的文章'
+            }
           }))
       },
       read(item){
