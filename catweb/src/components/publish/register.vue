@@ -80,7 +80,7 @@
                 this.$store.commit('SET_BASEINFO', res.data)
                 //在本地存入email信息
                 window.localStorage.setItem('userEmail', this.user.email)
-                this.$router.push({path: '/home'})
+//                this.$router.push({path: '/'})
                 this.close(true)
               })
           } else {

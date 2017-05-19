@@ -149,7 +149,7 @@
 
       },
       readUserInfo(article){
-        console.debug("---------", article)
+//        console.debug("---------", article)
       },
       read(article){
         this.article_id = item.tid;

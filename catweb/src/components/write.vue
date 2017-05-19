@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-row type="flex" justify="center" align="middle">
+    <el-row type="flex" justify="center" align="middle" style="margin-top: -18px">
       <el-col :span="15" :push="1" :pull="8">
         <div class="grid-content bg-purple-light content-height">
           <el-row>

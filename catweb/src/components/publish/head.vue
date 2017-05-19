@@ -50,7 +50,7 @@
         <div class="grid-content-right bg-purple-dark">
           <div class="right-head">
             <span v-if="mapUserInfo.email !== ''">
-              <el-badge value="new">
+              <el-badge :value="messageNumber>0?'new':''">
                 <el-button size="mini" @click="readMessage">{{messageNumber}}</el-button>
               </el-badge>
                 <el-dropdown @command="personMenu">
@@ -192,14 +192,14 @@
           window.localStorage.removeItem('userEmail')
         } else if (command === "write_article") {
           this.$store.commit("setArticleType", 1)
-          this.$router.push({path: '/home/article'})
+          this.$router.push({path: '/article'})
 
         } else if (command === "write_post") {
           this.$store.commit("setArticleType", 2)
-          this.$router.push({path: '/home/article'})
+          this.$router.push({path: '/article'})
         } else if (command === "rest_time") {
           this.$store.commit("setArticleType", 3)
-          this.$router.push({path: '/home/article'})
+          this.$router.push({path: '/article'})
         } else {
 
         }

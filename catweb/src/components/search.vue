@@ -214,7 +214,7 @@
         article_id: 0,
         isShowUserDialog: false,
         user_id: 0,
-        fullscreenLoading: false,
+        fullscreenLoading: true,
         noContentList: ''//没有内容时赋值
       }
     },
@@ -261,6 +261,7 @@
           return
         }
         this.fullscreenLoading = true
+        this.noContentList = ''
         if (page === 0) {
           this.pageInfo.offset = 0
         }
@@ -290,17 +291,19 @@
             if (res.body.total > 0) {
               this.articles = res.body.data
               this.pageInfo.total = res.body.total
-
+              this.fullscreenLoading = false
             } else {
               this.pageInfo.total = 0
               this.noContentList = '暂无该关键字的内容，换个关键字搜搜吧!'
+              this.fullscreenLoading = false
             }
 //            this.fullscreenLoading = false
           }))
           .catch((err => {
             this.noContentList = '暂无该关键字的内容，换个关键字搜搜吧!'
+            this.fullscreenLoading = false
           }))
-        this.fullscreenLoading = false
+//        this.fullscreenLoading = false
       },
       getFromHead(){
         this.searchContent = this.$route.params.searchContent
@@ -313,6 +316,8 @@
     watch: {
       radio(){
         this.pageInfo.currentPage = 1;
+        this.articles = {}
+        this.pageInfo.total = 0
         this.getSearchArticles(0)
       }
     },

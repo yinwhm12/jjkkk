@@ -29,11 +29,11 @@ const About = {
 
 
 export  default  new Router({
-  mode: 'hash',
+  mode: 'history',
   base: __dirname,
   routes: [
     {
-      path: '/home',
+      path: '/',
       component: Mian,
       children: [
         {
